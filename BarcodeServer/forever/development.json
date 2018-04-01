@@ -1,0 +1,7 @@
+﻿{
+
+  "uid": "app",
+  "append": true,
+  "watch": true,
+  "script": "app.js"
+}

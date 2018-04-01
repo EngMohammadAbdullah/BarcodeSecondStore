@@ -1,0 +1,511 @@
+/** {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+	background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+	
+    background-color:#32383d;
+    font-family: 'RobotoRegular', 'Droid Sans', 'Segoe UI', Segoe, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+    font-size:12px;
+}
+
+.app {
+    background: url(../images/cordova.png) no-repeat center top; 
+    position: absolute;             
+    left: 50%;
+    top: 50%;
+    height: 50px;                  
+    width: 225px;                   
+    text-align: center;
+    padding: 180px 0px 0px 0px;     
+    margin: -115px 0px 0px -112px;
+}
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;
+        margin:-90px 0px 0px -198px;
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+    }*/
+/*.ui-loading .ui-loader {
+    display:none;
+    }*/
+
+
+
+
+.trash {
+    color: rgb(209, 91, 71);
+}
+
+.flag {
+    color: rgb(248, 148, 6);
+}
+
+.panel-body {
+    padding: 0px;
+}
+
+.panel-footer .pagination {
+    margin: 0;
+}
+
+.panel .glyphicon, .list-group-item .glyphicon {
+    margin-right: 5px;
+}
+
+.panel-body .radio, .checkbox {
+    display: inline-block;
+    margin: 0px;
+}
+
+.panel-body input[type=checkbox]:checked + label {
+    text-decoration: line-through;
+    color: rgb(128, 144, 160);
+}
+
+.list-group-item:hover, a.list-group-item:focus {
+    text-decoration: none;
+    background-color: rgb(245, 245, 245);
+}
+
+.list-group {
+    margin-bottom: 0px;
+}
+
+
+/*The List Css*/
+/* A bit custom styling */
+
+.my-page .ui-listview li .ui-btn p {
+        color: #c0c0c0;
+}
+
+.my-page .ui-listview li .ui-btn .ui-li-aside {
+        color: #eee;
+}
+/* First breakpoint is 48em (768px). 3 column layout. Tiles 250x250 pixels incl. margin at the breakpoint. */
+@media ( min-width: 48em ) {
+         .my-page .ui-content {
+                padding: .5625em; /* 9px */
+            
+    }
+
+         .my-page .ui-listview li {
+                float: left;
+                width: 30.9333%; /* 33.3333% incl. 2 x 1.2% margin */
+                height: 14.5em; /* 232p */
+                margin: .5625em 1.2%;
+            
+    }
+
+             .my-page .ui-listview li > .ui-btn {
+                    -webkit-box-sizing: border-box; /* include padding and border in height so we can set it to 100% */
+                    -moz-box-sizing: border-box;
+                    -ms-box-sizing: border-box;
+                    box-sizing: border-box;
+                    height: 100%;
+                
+        }
+
+             .my-page .ui-listview li.ui-li-has-thumb .ui-li-thumb {
+                    height: auto; /* To keep aspect ratio. */
+                    max-width: 100%;
+                    max-height: none;
+                
+        }
+
+            
+        /* Make all list items and anchors inherit the border-radius from the UL. */
+             .my-page .ui-listview li,
+             .my-page .ui-listview li .ui-btn,
+             .my-page .ui-listview .ui-li-thumb {
+                    -webkit-border-radius: inherit;
+                    border-radius: inherit;
+                
+        }
+
+        
+    /* Hide the icon */
+         .my-page .ui-listview .ui-btn-icon-right:after {
+                display: none;
+            
+    }
+
+        
+    /* Make text wrap. */
+         .my-page .ui-listview h2,
+         .my-page .ui-listview p {
+                white-space: normal;
+                overflow: visible;
+                position: absolute;
+                left: 0;
+                right: 0;
+            
+    }
+
+        
+    /* Text position */
+         .my-page .ui-listview h2 {
+                font-size: 1.25em;
+                margin: 0;
+                padding: .125em 1em;
+                bottom: 50%;
+            
+    }
+
+         .my-page .ui-listview p {
+                font-size: 1em;
+                margin: 0;
+                padding: 0 1.25em;
+                min-height: 50%;
+                bottom: 0;
+            
+    }
+
+        
+    /* Semi transparent background and different position if there is a thumb. The button has overflow hidden so we don't need to set border-radius. */
+         .ui-listview .ui-li-has-thumb h2,
+         .ui-listview .ui-li-has-thumb p {
+                background: #111;
+                background: rgba(0,0,0,.8);
+            
+    }
+
+         .ui-listview .ui-li-has-thumb h2 {
+                bottom: 35%;
+            
+    }
+
+         .ui-listview .ui-li-has-thumb p {
+                min-height: 35%;
+            
+    }
+
+        
+    /* ui-li-aside has class .ui-li-desc as well so we have to override some things. */
+         .my-page .ui-listview .ui-li-aside {
+                padding: .125em .625em;
+                width: auto;
+                min-height: 0;
+                top: 0;
+                left: auto;
+                bottom: auto;
+                
+        /* Custom styling. */
+                background: #990099;
+                background: rgba(153,0,153,.85);
+                -webkit-border-top-right-radius: inherit;
+                border-top-right-radius: inherit;
+                -webkit-border-bottom-left-radius: inherit;
+                border-bottom-left-radius: inherit;
+                -webkit-border-bottom-right-radius: 0;
+                border-bottom-right-radius: 0;
+            
+    }
+
+        
+    /* If you want to add shadow, don't kill the focus style. */
+         .my-page .ui-listview li {
+                -moz-box-shadow: 0px 0px 9px #111;
+                -webkit-box-shadow: 0px 0px 9px #111;
+                box-shadow: 0px 0px 9px #111;
+            
+    }
+
+            
+        /* Images mask the hover bg color so we give desktop users feedback by applying the focus style on hover as well. */
+             .my-page .ui-listview li > .ui-btn:hover {
+                    -moz-box-shadow: 0px 0px 12px #33ccff;
+                    -webkit-box-shadow: 0px 0px 12px #33ccff;
+                    box-shadow: 0px 0px 12px #33ccff;
+                
+        }
+
+        
+    /* Animate focus and hover style, and resizing. */
+         .my-page .ui-listview li,
+         .my-page .ui-listview .ui-btn {
+                -webkit-transition: all 500ms ease;
+                -moz-transition: all 500ms ease;
+                -o-transition: all 500ms ease;
+                -ms-transition: all 500ms ease;
+                transition: all 500ms ease;
+            
+    }
+}
+/* Second breakpoint is 63.75em (1020px). 4 column layout. Tiles will be 250x250 pixels incl. margin again at the breakpoint. */
+@media ( min-width: 63.75em ) {
+         .my-page .ui-content {
+                padding: .625em; /* 10px */
+            
+    }
+
+        
+    /* Set a max-width for the last breakpoint to prevent too much stretching on large screens.
+        By setting the max-width equal to the breakpoint width minus padding we keep square tiles. */
+         .my-page .ui-listview {
+                max-width: 62.5em; /* 1000px */
+                margin: 0 auto;
+            
+    }
+
+            
+        /* Because of the 1000px max-width the width will always be 230px (and margin left/right 10px),
+            but we stick to percentage values for demo purposes. */
+             .my-page .ui-listview li {
+                    width: 23%;
+                    height: 230px;
+                    margin: .625em 1%;
+                
+        }
+}
+/* For this demo we used images with a size of 310x310 pixels. Just before the second breakpoint the images reach their max width: 1019px - 2 x 9px padding = 1001px x 30.9333% = ~310px */
+/*End Of List */
+
+
+/*ÇáÒÈæä*/
+
+
+.ui-field-contain {
+    margin-bottom: 20px;
+    border-bottom: 0;
+}
+
+    .ui-field-contain label {
+        margin-left: 100px;
+        font-family: Arial;
+        font-size: 18px;
+    }
+
+
+.error {
+    color: red;
+    font-style: italic;
+}
+
+
+.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+
+.ui-filterable {
+    margin-top: 20px;
+    border: 2px solid;
+    border-radius: 10px
+}
+
+#CustomersList > li {
+    border: 0;
+}
+
+    #CustomersList > li > a {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border: 0px;
+    }
+
+#hContainer {
+    font-family: 'CourgetteFont', cursive;
+    font-size: 22px;
+    margin-top: 5px;
+    padding-left: 30%;
+    padding-top: 10px;
+    background-color: #E91E63;
+    color: #fff;
+    height: 50px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/*Qrcode Page Css*/
+
+#PrintedTypesPage h1 {
+    font: 26px Georgia, Serif;
+    margin: 0 0 10px 0;
+}
+
+#PrintedTypesPage input[type=text] {
+    float: left;
+    width: 40px;
+    font: bold 20px Helvetica, sans-serif;
+    padding: 3px 0 0 0;
+    text-align: center;
+}
+
+#PrintedTypesPage form div {
+    overflow: hidden;
+    margin: 0 0 5px 0;
+}
+
+#PrintedTypesPage .button {
+    margin: 0 0 0 5px;
+    text-indent: -9999px;
+    cursor: pointer;
+    width: 29px;
+    height: 29px;
+    float: left;
+    text-align: center;
+    background: url(../images/buttons.png) no-repeat;
+}
+
+#PrintedTypesPage .dec {
+    background-position: 0 -29px;
+}
+
+#PrintedTypesPage .buttons {
+    padding: 20px 0 0 50px;
+}
+/*End Od Qrcode Page*/
+
+
+.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
+    font-size: 28px;
+    width: 100%;
+    height: 40px;
+}
+
+.ui-slider-track .ui-btn.ui-slider-handle {
+    font-size: .9em;
+    line-height: 30px;
+    background-color: #ad3764;
+}
+
+.ui-bar-a, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit,
+html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit {
+    background-color: #e9e9e9;
+    border-color: #ddd;
+    color: #cd2121;
+    text-shadow: 0 1px 0 #eee;
+    font-weight: 700;
+    height: 15px;
+    background-color: #3443a5;
+}
+
+#testPage [data-role="header"] {
+    background-color: #000;
+    height: 50px;
+}
+
+#testPage [data-role="footer"] {
+    background-color: #000;
+    height: 50px;
+}
+
+.ui-header .ui-title, .ui-footer .ui-title {
+    font-family: Times New Roman;
+    font-size: 18px;
+    color: #fff;
+}
+
+#qrcode {
+    width: 200px;
+    height: 300px;
+    margin-left: 20%;
+}
+
+.ui-field-contain {
+    margin-bottom: 5px;
+    border-bottom: 0;
+}
+
+#ProductPage .ui-content {
+    width: 100%;
+}
+
+#ProductPage .ui-bar-a, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit, html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit {
+    height: 50px;
+}
+
+#ProductPage .ui-input-text input, .ui-input-search input {
+    text-align: center;
+    font-size: 20px;
+}
+
+@font-face {
+    font-family: 'digital_font';
+    src: url('digital-7/digital-7 (mono).ttf'), url('digital-7/digital-7 (italic).ttf')
+}
+
+#OpenCloseContainerPage div[role="main"] h1 {
+    text-align: center;
+    font-size: 72px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-family: digital_font;
+    color: #c8cc3e;
+}
