@@ -65,7 +65,7 @@
         });
 
         $(document).ready(function () {
-            window.location.hash = 'OpenCloseContainerPage';
+            window.location.hash = 'home';
             $.mobile.initializePage();
             //هذا السطر أزال اللودنغ من وسط الشاشة!!
             $.mobile.loading("hide");
@@ -79,6 +79,18 @@
 </head>
 <body>
 
+    <div id="home" data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h3>Home</h3>
+        </div>
+        <div role="main" class="ui-content">
+            <a id="GoToOpenCloseContainerPage" class="ui-btn">OpenCloseContainerPage</a>
+            <a id="GoToAllScannedContainerNumberProductsPage" class="ui-btn">
+                AllScannedContainerNumberProductsPage
+            </a>
+        </div>
+    </div>
+
     <!-- هذه الصفحة لإنشاء container  -->
     <!-- أو إغلاقه  -->
     <div id="OpenCloseContainerPage" data-role="page" data-theme="b">
@@ -86,24 +98,43 @@
             <h3>O/C Container</h3>
         </div>
         <div role="main" class="ui-content">
-            <h1>4546456468</h1>
+            <h1 id="containerNoHeader">4546456468</h1>
             <div class="ui-grid-b" style="height:60px">
                 <div class="ui-block-a" style="height:100%;width:50%">
-                    <a id="openContainerScanDocument" class="ui-btn ui-btn-icon-left ui-icon-gear">Open&nbsp;</a>
+                    <a id="openContainerScanDocument" class="ui-btn ui-btn-icon-left ui-icon-gear button">Open&nbsp;</a>
                 </div>
                 <div class="ui-block-b" style="height:100%;width:50%">
                     <a id="closeContainerScanDocument" class="ui-btn ui-btn-icon-left ui-icon-gear">Close</a>
                 </div>
                 <div class="ui-block-c" style="height:100%"></div>
             </div>
-            <ul data-role="listview" data-inset="true">
-                <li data-role="list-divider">Items</li>
-                <li>
+
+            <br />
+
+            <ul id="listViewContainerNumbers" data-role="listview" data-inset="true"></ul>
+
+        </div>
+    </div>
+
+
+    <!--  هذه الصفحة لعرض    المنتجات التي تم مسحها لرقم معين     -->
+    <div id="AllScannedContainerNumberProductsPage" data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h3>Header</h3>
+        </div>
+        <div role="main" class="ui-content">
+
+            <a class="ui-btn ui-btn-b ui-btn-icon-left ui-icon-camera">تجربة</a>
+
+            <ul id="listViewScannedProducts"
+                data-role="listview" data-inset="true">
+                <li data-theme="b">
                     <a href="#">
                         <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">Item
                     </a>
                 </li>
             </ul>
+
         </div>
     </div>
 

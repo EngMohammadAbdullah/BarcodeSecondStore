@@ -13,11 +13,27 @@ var Container = {
                 container_number: []
             });
 
-            // the schema is useless so far
-            // we need to create a model using it
-            var Container = mongoose.model('Container', containerSchema);
+            if (mongoose.connection.modelNames()) {
 
-            resolve(Container);
+
+                var schema = mongoose.connection.modelNames().
+                    find(schema => schema == "Container");
+
+                if (schema) {
+                    return resolve(mongoose.connection.model("Container"));
+                }
+                else {
+                    // the schema is useless so far
+                    // we need to create a model using it
+                    var Container = mongoose.model('Container', containerSchema);
+
+
+                    return resolve(Container);
+                }
+            }
+
+
+
         })
 
     },
@@ -83,6 +99,8 @@ var Container = {
 
                 if (containerDoc[0].container_number.length) {
 
+                    console.log("[0]" + containerDoc[0].container_number[0]);
+                    console.log("length" + containerDoc[0].container_number.length);
                     containerDoc[0].container_number =
                         containerDoc[0].container_number.slice(1);
 
@@ -108,7 +126,7 @@ var Container = {
 
 
 
-    },
+    }
 
 };
 

@@ -19,7 +19,24 @@
 
     var container = require("./Mongo/Container.js");
     var scannedContainer = require("./Mongo/mongo_models/ScannedProduct.js");
+    var winston = require('winston');
+    var loggerInfo = new winston.Logger({
+        level: 'info',
+        transports: [
+            new (winston.transports.Console)(),
+            new (winston.transports.File)({ filename: __dirname + '/LogFiles/info.log' })
+        ]
+    });
+    var loggerError = new winston.Logger({
+        level: 'error',
+        transports: [
+            new (winston.transports.Console)(),
+            new (winston.transports.File)({ filename: __dirname + '/LogFiles/error.log' })
+        ]
+    });
 
+    loggerInfo.info('Create Container Number %s', 'first', 'second', { number: 123 });
+    loggerError.error('Hello again distributed logs');
     try {
 
         container.createContainer().then((cc) => {
@@ -27,36 +44,7 @@
             container.getContainerNumber(cc).then((cNo) => {
                 if (cNo) {
 
-                    console.log(cNo);
-                    scannedContainer.createScannedProductsSchema().then(sContaier => {
-
-                        scannedContainer.GetLastScannedContainer(sContaier, cNo)
-                            .then((lastContainer) => {
-                                if (lastContainer) {
-                                    scannedContainer.CloseContainer(
-                                        sContaier, lastContainer.container_number).
-                                        then((isClosed) => {
-                                            console.log("ddddd");
-                                            if (isClosed) {
-
-                                                console.log("Closed");
-                                                console.log(lastContainer);
-
-                                            }
-                                            else
-                                                console.log("The Container already Closed!!");
-
-
-                                        })
-
-                                }
-                                else {
-                                    console.log("There is no Opened Container!!")
-                                }
-                            })
-
-                    });
-
+                    container.removeContainerNumber(cc)
 
 
                 }

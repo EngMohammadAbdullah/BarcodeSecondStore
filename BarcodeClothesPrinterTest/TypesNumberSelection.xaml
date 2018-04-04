@@ -1,0 +1,318 @@
+﻿<Window x:Class="BarcodeClothesPrinter.TypesNumberSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BarcodeClothesPrinter"
+        mc:Ignorable="d"       
+        
+         FlowDirection="LeftToRight"
+        Title="TypesNumberSelection" Height="444.917" Width="371.527">
+    <Grid Margin="0,7,0,-7">
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,50,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="CCR" Width="64"/>
+            <TextBox 
+                Name="ccr"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,49,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="CCR2" Width="64"/>
+            <TextBox 
+                Name="ccr2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69" />
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,83,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="LCP" Width="64"/>
+            <TextBox 
+                Name="lcp"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,82,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="LCP2" Width="64"/>
+            <TextBox 
+                Name="lcp2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,118,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="MJP" Width="64"/>
+            <TextBox 
+                Name="mjp"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,117,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="MJP 2" Width="64"/>
+            <TextBox 
+                Name="mjp2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,151,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="LPT" Width="64"/>
+            <TextBox 
+                Name="lpt"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,150,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="LPT 2 " Width="64"/>
+            <TextBox 
+                Name="lpt2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,188,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="CCH" Width="64"/>
+            <TextBox 
+                Name="cch"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,187,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="CCH 2" Width="64"/>
+            <TextBox 
+                Name="cch2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,221,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="MNP" Width="64"/>
+            <TextBox 
+                Name="mnp"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,220,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="MNP 2" Width="64"/>
+            <TextBox 
+                Name="mnp2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,256,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="ADP" Width="64"/>
+            <TextBox 
+                Name="adp"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,255,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="ADP 2 " Width="64"/>
+            <TextBox 
+                Name="adp2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="25" Margin="31,289,0,0" 
+            VerticalAlignment="Top" Width="149">
+            <Label Content="XZX" Width="64"/>
+            <TextBox 
+                Name="xzx"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+
+            HorizontalAlignment="Left" 
+            FlowDirection="LeftToRight"
+            Height="24" Margin="184,288,0,0" 
+            VerticalAlignment="Top" Width="150">
+            <Label Content="XZX 2 " Width="64"/>
+            <TextBox 
+                Name="xzx2"
+                HorizontalAlignment="Center"
+                TextAlignment="Center"
+                VerticalContentAlignment="Center"
+                TextWrapping="Wrap" 
+                Text="4" Width="69"/>
+
+
+
+        </StackPanel>
+        <Button Click="save_file" Content="save" HorizontalAlignment="Left" Margin="259,359,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

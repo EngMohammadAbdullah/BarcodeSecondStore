@@ -1,9 +1,27 @@
-﻿/* هذا الموديول لتخزين العناصر التي
+﻿
+/* هذا الموديول لتخزين العناصر التي
  نقوم يمسحها عن طريق الموبايل  , 
  */
 var mongoose = require('mongoose');
 var randomize = require('randomatic');
+var containerLib = require("../Container.js");
 
+//Winston مكتبة لوغ 
+var winston = require('winston');
+var loggerInfo = new winston.Logger({
+    level: 'info',
+    transports: [
+        new (winston.transports.Console)(),
+        new (winston.transports.File)({ filename: __dirname + '/LogFiles/info.log' })
+    ]
+});
+var loggerError = new winston.Logger({
+    level: 'error',
+    transports: [
+        new (winston.transports.Console)(),
+        new (winston.transports.File)({ filename: __dirname + '/LogFiles/error.log' })
+    ]
+});
 var ScannedProduct = {
 
     //هنا لانشاء سكيما و من هنا نستطيع إنشاء أوبجكت  
@@ -27,11 +45,23 @@ var ScannedProduct = {
                 ClosedContainer: { type: Boolean, default: false }
             });
 
-            // the schema is useless so far
-            // we need to create a model using it
-            var Container = mongoose.model('ScannedProduct', ScannedProduct);
+            if (mongoose.connection.modelNames()) {
 
-            resolve(Container);
+
+                var schema = mongoose.connection.modelNames().
+                    find(schema => schema == "ScannedProduct");
+
+                if (schema) {
+                    return resolve(mongoose.connection.model("ScannedProduct"));
+                }
+                else {
+
+                    var Container = mongoose.model('ScannedProduct', ScannedProduct);
+
+                    resolve(Container);
+                }
+            }
+
         })
 
     },
@@ -92,16 +122,32 @@ var ScannedProduct = {
     },
 
     AddBlankContainer: function (container, containerNumber) {
+
         return new Promise((resolve, reject) => {
 
 
-            var blankContainer = new container({ container_number: containerNumber });
+            var blankContainer =
+                new container({ container_number: containerNumber });
             blankContainer.save(err => {
 
                 if (err) {
                     return reject(err);
                 }
-                return resolve(true);
+
+                containerLib.createContainer().then((con) => {
+                    containerLib.removeContainerNumber(con)
+                        .then((isRemoved) => {
+
+                            if (isRemoved)
+
+                                return resolve(true);
+
+                            else
+                                return resolve(false);
+                        });
+
+                })
+
 
             });
         });
@@ -125,43 +171,56 @@ var ScannedProduct = {
         return new Promise((resolve, reject) => {
 
             ScannedProduct.IsExistOpenSCannedProduct(container)
-                .then(function (exisDoc) {
-                    if (exisDoc) {
-                        return resolve(exisDoc)
+                .then(function (existDoc) {
+                    if (existDoc) {
+                        console.log(existDoc)
+                        return resolve(existDoc)
                     }
                     else {
-                        container.find()
-                            .where("container_number").equals(containerNumber)
-                            .exec(function (err, foundedContainers) {
+                        //لم أرى داع لهذا الكود 
+                        //طالما لا يوجد مستند مفتوح  
+                        //لا يوجد داع 
 
-                                if (foundedContainers.length != 0) {
-                                    if (!foundedContainers[foundedContainers.length - 1].
-                                        ClosedContainer) {
-                                        resolve(foundedContainers[foundedContainers.length - 1]);
-                                    }
-                                    else
-                                        return resolve(null);
-                                }
+                        //container.find()
+                        //    .where("container_number").equals(containerNumber)
+                        //    .exec(function (err, foundedContainers) {
 
-                                else {
-                                    ScannedProduct.
-                                        AddBlankContainer(container, containerNumber)
-                                        .then((isOpened) => {
-                                            if (isOpened) {
-                                                container.
-                                                    findOne({ "container_number": containerNumber },
-                                                    (err, lastContainer) => {
-                                                        if (err) {
+                        //        if (foundedContainers.length != 0) {
+                        //            if (!foundedContainers[foundedContainers.length - 1].
+                        //                ClosedContainer) {
+                        //                resolve(foundedContainers[foundedContainers.length - 1]);
+                        //            }
+                        //            else
+                        //                return resolve(null);
+                        //        }
 
-                                                            return reject()
-                                                        }
-                                                        return resolve(lastContainer)
-                                                    })
+                        //        else {
+                        //  الكود التالي نعيده  إلى هنا 
+                        //        }
+                        //    });
+
+                        ScannedProduct.
+                            AddBlankContainer(container, containerNumber)
+                            .then((isOpened) => {
+                                if (isOpened) {
+                                    container.
+                                        findOne({ "container_number": containerNumber },
+                                        (err, lastContainer) => {
+                                            if (err) {
+                                                loggerError.error(err);
+                                                return reject()
+
                                             }
-
+                                            return resolve(lastContainer)
                                         })
                                 }
-                            });
+                                else {
+                                    loggerError.error("حدث خطأ في حذف الرقم ",
+                                        { number: containerNumber })
+                                    return resolve(null);
+                                }
+
+                            })
                     }
                 }).catch((reason) => {
 
@@ -267,6 +326,48 @@ var ScannedProduct = {
                 return resolve(doc);
 
             })
+            return resolve(null)
+
+        })
+    },
+
+
+    getAllScannedContainerNumber: function (scannedContainer) {
+        return new Promise((resolve, reject) => {
+            var allScannedContainers = [];
+            scannedContainer.find({}).exec((err, allDocs) => {
+
+                for (var i = 0; i < allDocs.length; i++) {
+
+                    allScannedContainers.push(allDocs[i].container_number);
+
+                }
+
+                return resolve(allScannedContainers);
+
+
+
+            })
+
+
+        })
+    },
+
+    GetAllScannedContainerNumberProducts: function (scannedContainer, containerNo) {
+        return new Promise((resolve, reject) => {
+
+            scannedContainer.findOne({ "container_number": containerNo.trim() }
+                , (err, doc) => {
+
+                    if (err) {
+
+                        return reject(err);
+                    }
+
+                    return resolve(doc.scannedProductArray);
+
+                })
+
 
         })
     }

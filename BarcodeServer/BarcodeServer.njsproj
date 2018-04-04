@@ -59,6 +59,9 @@
     <Compile Include="test.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Test2.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="forever\development.json">
       <SubType>Code</SubType>
     </Content>
@@ -71,6 +74,7 @@
     <Folder Include="Mongo\mongo_models\" />
     <Folder Include="forever\" />
     <Folder Include="Mongo\Sockets\" />
+    <Folder Include="LogFiles\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
