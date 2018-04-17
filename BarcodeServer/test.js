@@ -19,44 +19,29 @@
 
     var container = require("./Mongo/Container.js");
     var scannedContainer = require("./Mongo/mongo_models/ScannedProduct.js");
-    var winston = require('winston');
-    var loggerInfo = new winston.Logger({
-        level: 'info',
-        transports: [
-            new (winston.transports.Console)(),
-            new (winston.transports.File)({ filename: __dirname + '/LogFiles/info.log' })
-        ]
-    });
-    var loggerError = new winston.Logger({
-        level: 'error',
-        transports: [
-            new (winston.transports.Console)(),
-            new (winston.transports.File)({ filename: __dirname + '/LogFiles/error.log' })
-        ]
-    });
 
-    loggerInfo.info('Create Container Number %s', 'first', 'second', { number: 123 });
-    loggerError.error('Hello again distributed logs');
+    var productTypes = require("./Mongo/ProductTypes.js");
+
+
     try {
 
-        container.createContainer().then((cc) => {
+        productTypes.createSchemaType().then((schema) => {
 
-            container.getContainerNumber(cc).then((cNo) => {
-                if (cNo) {
+            productTypes.readTypes(schema).then((allTypes) => {
+                if (!allTypes.length) {
 
-                    container.removeContainerNumber(cc)
-
+                    console.log("لا يوجد عناصر لعرضها");
 
                 }
-            }).catch((reason) => {
+                console.log(allTypes)
 
-                console.log(reason);
-            });
+            })
+
         });
 
 
     } catch (e) {
-        console.log(e.message)
+
     }
 
 

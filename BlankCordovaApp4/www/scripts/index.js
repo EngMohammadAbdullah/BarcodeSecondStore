@@ -1,7 +1,7 @@
-
 (function () {
     "use strict";
     var alltypes = ["ccr", "cch", "mcp", "rrt", "lcp", "eer", "yyt", "upl"];
+    var allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var qrcode = {};
     var centerDatabase = {};
     var ProductsDictionary = {};
@@ -12,13 +12,73 @@
     function onDeviceReady() {
 
         try {
+            //هذا الحدث لإضافة نوع جديد للاثحة
+            //يقوم بتوليد 
+            $("#addProductType").click(() => {
 
+                var myArr = $('#listviewTypes li');
+                for (var i = 0; i < myArr.length; i++) {
+                    if ($(myArr[i]).text().trim().toUpperCase() ==
+                        $("#productTypeText").val().trim().toUpperCase()) {
+                        alert("Type Exist");
+                        return;
+                    }
+                }
+                var listview = $("#listviewTypes");
+                var pNumber = "";
+
+                for (var i = 0; i < $("#productTypeText").val().length; i++) {
+                    var temp = (allLetters.indexOf($("#productTypeText").val()[i].toUpperCase()) + 1);
+                    pNumber += temp;
+                }
+
+                alert(pNumber);
+
+                listview.append(
+
+                    ' <li data-number="' + pNumber + '" > <a href="#"> <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">'
+                    + $("#productTypeText").val().trim().toUpperCase() + '</a> </li>')
+
+                $('[data-role=listview]').listview().listview('refresh');
+
+
+            })
+            //لتخزين العناصر في الإنترنت 
+            $("#StoreNewProductTypesInDB").click(() => {
+
+                var allTypes = [];
+
+                var allItems = $('#listviewTypes li');
+
+                for (var i = 0; i < allItems.length; i++) {
+                    var typeItem = {};
+                    typeItem.pName = $(allItems[i]).text();
+                    typeItem.pNumber = $(allItems[i]).attr("data-number");
+                    allTypes.push(typeItem);
+                }
+                if (allTypes.length) {
+
+
+                    socket.emit("StoreNewProductTypes", allTypes);
+                }
+                else
+                    swal("لا يوجد أنواع جديدة لتخزينها ")
+
+            })
+            //هذا الحدث للذهاب لصفحة المنتجات 
+            $("#GoToProductTypesPage").click(() => {
+                GetAllProductTypes();
+                $.mobile.navigate("#ProductTypesManagePage");
+            })
+            //  هذا التابع يطبع تقرير عن البالات التي تم تخزينها 
+            PrintScannedProductReport()
             //الكود التالي لاستيراد أرقام الكونتيرات التي تم العمل عليها 
 
             //  GetAllScannedContainerNumbers();
             $("#GoToOpenCloseContainerPage").click(() => {
                 $.mobile.navigate("#OpenCloseContainerPage");
             })
+
             $("#GoToAllScannedContainerNumberProductsPage").click(() => {
                 $.mobile.navigate("#AllScannedContainerNumberProductsPage");
             });
@@ -26,10 +86,14 @@
             $(document).on('pageshow', '#OpenCloseContainerPage', function () {
 
 
+                // Show full page LoadingOverlay
+                $.LoadingOverlay("show");
+
                 GetAllScannedContainerNumbers();
             });
 
             try {
+
                 var openBtn = $("#openContainerScanDocument");
                 var closeBtn = $("#closeContainerScanDocument");
 
@@ -40,11 +104,8 @@
                  
                  */
 
-
-
-
-
                 openBtn.click(function () {
+
 
                     socket.emit("OpenScannedDocument");
                     //after Getting Object
@@ -325,7 +386,106 @@
     // End of Scanned Methods
 
 
+    //  هذا التابع يطبع تقرير عن البالات التي تم تخزينها 
 
+    function PrintScannedProductReport() {
+
+        $("#testPrintReport").click(() => {
+
+            socket.emit("GellAllScannedProducts", "4546461");
+
+            socket.on("GettingAllScannedContainerNumbers", (products) => {
+
+                var tablestr = "";
+
+                CountOf(products).then((objects) => {
+
+
+                    for (var key in objects) {
+                        var value = objects[key];
+                        var element = "<tr><td>" + key +
+                            "</td><td>" + value + "</td></tr>";
+
+                        tablestr += element;
+                    }
+
+
+
+                    //for (var i = 0; i < CountOf(products).length; i++) {
+
+                    //    var element = "<tr><td>" + products[i].productNumber +
+                    //        "</td><td>" + products[i].productType + "</td></tr>";
+
+                    //    tablestr += element;
+                    //}
+
+
+                    var str = '<!DOCTYPE html><html><head> <style> body { background: rgb(204,204,204); } page { background: white; display: block; margin: 0 auto; margin-bottom: 0.5cm; box-shadow: 0 0 0.5cm rgba(0,0,0,0.5); } page[size="A4"] { width: 21cm; height: 29.7cm; } page[size="A4"][layout="portrait"] { width: 29.7cm; height: 21cm; } page[size="A3"] { width: 29.7cm; height: 42cm; } page[size="A3"][layout="portrait"] { width: 42cm; height: 29.7cm; } page[size="A5"] { width: 14.8cm; height: 21cm; } page[size="A5"][layout="portrait"] { width: 21cm; height: 14.8cm; } @media print { body, page { margin: 0; box-shadow: 0; } } #customers { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; } #customers td, #customers th { border: 1px solid #ddd; padding: 8px; } #customers tr:nth-child(even) { background-color: #f2f2f2; } #customers tr:hover { background-color: #ddd; } #customers th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white; } #customers th:first-of-type { width: 20% } </style></head><body> <page size="A4"> <table id="customers"> <tr> <th>Company</th> <th>Contact</th> </tr> '
+                        + tablestr + '</table> </page></body></html>';
+
+
+
+                    cordova.plugins.printer.print(str, {
+                        printerId: "MG3600 series(192.168.0.206)",
+
+                    });
+
+                });
+
+
+            });
+
+
+        })
+    }
+    //الحصول على أنواع المنتجات CCR,MCP,Lpt
+    function GetAllProductTypes() {
+
+        socket.emit("GetAllProductTypes");
+        socket.on("GettingAllProductTypes", (allTypes) => {
+
+            if (allTypes.length) {
+                alert(allTypes.length);
+                var listview = $("#listviewTypes");
+                listview.empty();
+
+                for (var i = 0; i < allTypes.length; i++) {
+
+                    var theme = isEven(i) ? '"a"' : '"b"';
+                    listview.append(' <li data-theme=' + theme +
+                        'data-number="' + allTypes[i].pNumber + '" > <a href="#"> <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">'
+                        + allTypes[i].pName + '       '
+                        + '</a> </li>')
+                }
+
+                $('[data-role=listview]').listview().listview('refresh');
+            }
+            else
+                swal("لايوجد أنواع لعرضها")
+
+        })
+    }
+
+    function CountOf(products) {
+
+        return new Promise((resolve, reject) => {
+            //const vals = Object.keys(products).map(key => products[key]);
+            //alert(vals.length);
+            var elements = {};
+            for (var i = 0; i < products.length; i++) {
+                if (elements[products[i].productType] == undefined) {
+                    elements[products[i].productType] = 1;
+                }
+                else
+                    elements[products[i].productType] += 1;
+            }
+
+            return resolve(elements);
+        })
+
+
+
+    }
 
     //هذا استخدم لتسجيل الدخول 
     function ScanToLogin() {
@@ -514,7 +674,8 @@
     //هذا الكود لاستيراد الكود من قاعدة البيانات و عرضه في ال Listview
     function GetAllScannedContainerNumbers() {
 
-        socket.emit("GetAllScannedContainerNumbers");
+
+
         socket.on("GettingAllScannedContainerNumbers",
             (_allScannedContainers) => {
                 var listview = $("#listViewContainerNumbers");
@@ -550,6 +711,7 @@
                 $('[data-role=listview]').listview().listview('refresh');
 
             })
+        $.LoadingOverlay("hide");
     }
 
     function GellAllScannedProduct(containerNumber) {

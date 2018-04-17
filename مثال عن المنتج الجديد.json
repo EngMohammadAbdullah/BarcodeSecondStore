@@ -1,0 +1,47 @@
+{
+  "container_number": "ddd",
+  "container_Date": "2/2/2018",
+  "scannedProductArray": [
+    {
+      "Type_Name": "CCR",
+      "Elements": [
+        {
+          "ScannedDate": {
+            "$date": "2018-03-28T20:54:57.663Z"
+          },
+          "productNumber": "4656874974",
+          "productType": "CCR"
+        },
+        {
+          "ScannedDate": {
+            "$date": "2018-03-28T20:55:23.698Z"
+          },
+          "productNumber": "4656874974",
+          "productType": "CCR"
+        }
+      ]
+    },
+    {
+      "Type_Name": "CCR",
+      "Elements": [
+
+        {
+          "ScannedDate": {
+            "$date": "2018-03-28T21:25:16.202Z"
+          },
+          "productNumber": "4656874974",
+          "productType": "CCR"
+        },
+        {
+          "ScannedDate": {
+            "$date": "2018-03-28T21:26:08.696Z"
+          },
+          "productNumber": "4656874974",
+          "productType": "CCR"
+        }
+
+      ]
+    }
+
+  ]
+}

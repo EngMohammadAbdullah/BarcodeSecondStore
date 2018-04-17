@@ -3,7 +3,7 @@ var randomize = require('randomatic');
 
 var Types = {
 
-    createTypes: function () {
+    createSchemaType: function () {
         return new Promise((resolve, reject) => {
             var Schema = mongoose.Schema;
 

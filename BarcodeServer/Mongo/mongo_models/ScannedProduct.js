@@ -22,6 +22,7 @@ var loggerError = new winston.Logger({
         new (winston.transports.File)({ filename: __dirname + '/LogFiles/error.log' })
     ]
 });
+
 var ScannedProduct = {
 
     //هنا لانشاء سكيما و من هنا نستطيع إنشاء أوبجكت  
@@ -366,7 +367,7 @@ var ScannedProduct = {
 
                     return resolve(doc.scannedProductArray);
 
-                })
+                });
 
 
         })

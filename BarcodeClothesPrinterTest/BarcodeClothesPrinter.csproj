@@ -510,6 +510,7 @@
     <Content Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
+    <Content Include="Scripts\loadingoverlay.min.js" />
     <Content Include="Scripts\winjscontrib\WinJSContrib.bindings.js" />
     <Content Include="Scripts\winjscontrib\WinJSContrib.bindings.min.js" />
     <Content Include="Scripts\winjscontrib\winjscontrib.core.js" />

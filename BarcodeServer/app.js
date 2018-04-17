@@ -161,7 +161,7 @@ io.on('connection', function (socket) {
         scannedContainer.createScannedProductsSchema().then((sContaier) => {
 
             scannedContainer.getAllScannedContainerNumber(sContaier).then((allSCannedContainer) => {
-               
+
                 socket.emit("GettingAllScannedContainerNumbers", allSCannedContainer)
 
             })
@@ -179,7 +179,7 @@ io.on('connection', function (socket) {
             scannedContainer.
                 GetAllScannedContainerNumberProducts(sContaier, container_number)
                 .then((allSCannedProducts) => {
-                   
+
                     socket.emit("GettingAllScannedContainerNumbers", allSCannedProducts)
 
                 });
@@ -188,6 +188,40 @@ io.on('connection', function (socket) {
 
     })
 
+    socket.on("GetAllProductTypes", () => {
+
+        type.createSchemaType().then((schemaType) => {
+
+            type.readTypes(schemaType).then((allTypes) => {
+                if (allTypes.length) {
+
+                    socket.emit("GettingAllProductTypes", allTypes);
+                }
+                else
+                    socket.emit("GettingAllProductTypes", allTypes);
+
+            })
+
+        });
+
+    });
+
+
+    socket.on("StoreNewProductTypes", (allNewTypes) => {
+
+        type.createSchemaType().then((schemaType) => {
+
+            type.CreateNewArrayTypes(schemaType, allNewTypes).then((state) => {
+
+                console.log(state);
+                socket.emit("StoringNewProductTypes", state);
+
+            })
+
+        });
+
+        console.log(allNewTypes);
+    })
 
 });
 

@@ -37,6 +37,9 @@
     <link href="css/sweetalert2.min.css" rel="stylesheet" />
     <script src="scripts/sweetalert2.min.js"></script>
     <!-- End Of Sweet Alert -->
+    <!-- jQuery LoadingOverlay  -->
+    <script src="scripts/loadingoverlay.min.js"></script>
+    <!--End jQuery LoadingOverlay  -->
     <!-- Bootstrab  -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
@@ -65,7 +68,7 @@
         });
 
         $(document).ready(function () {
-            window.location.hash = 'home';
+            window.location.hash = 'GoToProductTypesPage';
             $.mobile.initializePage();
             //هذا السطر أزال اللودنغ من وسط الشاشة!!
             $.mobile.loading("hide");
@@ -81,13 +84,48 @@
 
     <div id="home" data-role="page">
         <div data-role="header" data-position="fixed">
-            <h3>Home</h3>
+            <h3>GoToProductTypesPage</h3>
         </div>
         <div role="main" class="ui-content">
             <a id="GoToOpenCloseContainerPage" class="ui-btn">OpenCloseContainerPage</a>
+            <a id="testLoader" class="ui-btn">Test Loader</a>
             <a id="GoToAllScannedContainerNumberProductsPage" class="ui-btn">
                 AllScannedContainerNumberProductsPage
             </a>
+            <a id="GoToProductTypesPage" class="ui-btn">
+                GoToProductTypesPage
+            </a>
+        </div>
+    </div>
+
+    <!-- هذه الصفحة لإدارة أنواع البالات   -->
+    <div id="ProductTypesManagePage"
+         data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h3>Product Types</h3>
+        </div>
+        <div role="main" class="ui-content">
+            <input type="text" id="productTypeText" placeholder="Enter Type" />
+            <br />
+            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
+               id="addProductType">Add</a>
+            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
+               id="StoreNewProductTypesInDB">Store</a>
+            <br />
+            <ul id="listviewTypes" data-role="listview" data-inset="true"></ul>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h3>Types</h3>
+        </div>
+    </div>
+    <!-- هذه الصفحة لاختبار طباعة تقرير  -->
+    <div id="testPrintReport" data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h3>Home</h3>
+        </div>
+        <div role="main" class="ui-content">
+            <a id="PrintReportButton" class="ui-btn">OpenCloseContainerPage</a>
+
         </div>
     </div>
 

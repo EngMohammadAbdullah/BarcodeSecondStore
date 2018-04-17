@@ -1,9 +1,10 @@
 ﻿var mongoose = require('mongoose');
 var randomize = require('randomatic');
 var Type = require('./mongo_models/types_model.js');
+
 var ProductTypes = {
 
-    createType: function () {
+    createSchemaType: function () {
         return new Promise((resolve, reject) => {
 
             var Schema = mongoose.Schema;
@@ -15,29 +16,51 @@ var ProductTypes = {
                 types: [TypeSchema]
             });
 
+            if (mongoose.connection.modelNames()) {
 
-            // the schema is useless so far
-            // we need to create a model using it
-            var Types = mongoose.model('Types', TypesSchema);
 
-            resolve(Types);
+                var schema = mongoose.connection.modelNames().
+                    find(schema => schema == "Types");
+
+                if (schema) {
+                    return resolve(mongoose.connection.model("Types"));
+                }
+                else {
+
+                    var Container =
+                        mongoose.model('Types', TypesSchema);
+
+                    resolve(Container);
+                }
+            }
+
+
 
         });
     },
-    readTypes: function () {
+
+    readTypes: function (typeSchema) {
+
         return new Promise((resolve, reject) => {
 
 
-            Type.find(function (err, types) {
+
+            typeSchema.find({}).exec((err, types) => {
+
                 if (err) {
                     return reject(err);
                 }
-                resolve(types[0].types);
+                if (types.length) {
+
+                    return resolve(types[0].types)
+
+                }
+                else
+                    return resolve(types);
             })
-
-
         });
     },
+
     GetTypeNumber: function (typeNumber) {
         return new Promise((resolve, reject) => {
             Type.find(function (err, types) {
@@ -56,7 +79,36 @@ var ProductTypes = {
             });
 
         });
+    },
+
+    CreateNewArrayTypes: function (typeSchema, newTypes) {
+        return new Promise((resolve, reject) => {
+
+            typeSchema.find({}).exec((err, types) => {
+
+                if (err) {
+                    return reject(err);
+                }
+                if (types.length) {
+                    types[0].types = newTypes;
+                    types[0].save(err => {
+
+                        if (err) {
+                            return reject(err);
+                        }
+
+                        return resolve(true);
+                    })
+
+                }
+                else
+                    return resolve(false);
+            })
+
+
+        })
     }
+
 };
 
 module.exports = ProductTypes;
