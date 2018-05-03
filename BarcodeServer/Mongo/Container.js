@@ -37,6 +37,7 @@ var Container = {
         })
 
     },
+
     generateContainerNumbers: function (container) {
         return new Promise((resolve, reject) => {
 
@@ -76,8 +77,6 @@ var Container = {
                 }
                 else
                     reject("There is no enouph container Numbers")
-
-
 
             });
 

@@ -13,20 +13,14 @@
 function GenerateProductQrCode(qrCodeText) {
     return new Promise(function (resolve, reject) {
         try {
-
-
-
-
-
+            
             function makeCode() {
-
-
+                
                 qrcode.makeCode(qrCodeText);
                 resolve();
             }
 
-
-
+            
             makeCode();
 
             //$("#textQrocode").

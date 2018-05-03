@@ -10,7 +10,8 @@ var ProductTypes = {
             var Schema = mongoose.Schema;
 
             // create a schema
-            var TypeSchema = new Schema({ pName: String, pNumber: String });
+            var TypeSchema =
+                new Schema({ pName: String, pNumber: String, Category: String });
 
             var TypesSchema = new Schema({
                 types: [TypeSchema]
@@ -33,8 +34,6 @@ var ProductTypes = {
                     resolve(Container);
                 }
             }
-
-
 
         });
     },
@@ -69,8 +68,9 @@ var ProductTypes = {
                 }
 
                 for (var i = 0; i < types[0].types.length; i++) {
-
+                    console.log(types[0].types[i])
                     if (types[0].types[i].pName == typeNumber) {
+                       
                         resolve(types[0].types[i].pNumber);
                         break;
                     }

@@ -59,7 +59,7 @@ io.on('connection', function (socket) {
         });
     });
 
-    //socket.emit()
+    
     //??? ??? ??????? ,????? ??????? ???????? !!
     socket.on('Server', function (msg) {
 
@@ -194,7 +194,7 @@ io.on('connection', function (socket) {
 
             type.readTypes(schemaType).then((allTypes) => {
                 if (allTypes.length) {
-
+                  
                     socket.emit("GettingAllProductTypes", allTypes);
                 }
                 else
@@ -223,6 +223,13 @@ io.on('connection', function (socket) {
         console.log(allNewTypes);
     })
 
+
+    socket.on("GetNewBugs", () => {
+
+
+
+
+    })
 });
 
 
@@ -263,6 +270,8 @@ function CheckExistingSchema(schemaName) {
 
     })
 }
+
+
 process.on('uncaughtException', function (err) {
     console.log(err.message);
 })

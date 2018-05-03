@@ -1,3 +1,4 @@
+
 (function () {
     "use strict";
     var alltypes = ["ccr", "cch", "mcp", "rrt", "lcp", "eer", "yyt", "upl"];
@@ -12,64 +13,20 @@
     function onDeviceReady() {
 
         try {
-            //هذا الحدث لإضافة نوع جديد للاثحة
-            //يقوم بتوليد 
-            $("#addProductType").click(() => {
 
-                var myArr = $('#listviewTypes li');
-                for (var i = 0; i < myArr.length; i++) {
-                    if ($(myArr[i]).text().trim().toUpperCase() ==
-                        $("#productTypeText").val().trim().toUpperCase()) {
-                        alert("Type Exist");
-                        return;
-                    }
-                }
-                var listview = $("#listviewTypes");
-                var pNumber = "";
-
-                for (var i = 0; i < $("#productTypeText").val().length; i++) {
-                    var temp = (allLetters.indexOf($("#productTypeText").val()[i].toUpperCase()) + 1);
-                    pNumber += temp;
-                }
-
-                alert(pNumber);
-
-                listview.append(
-
-                    ' <li data-number="' + pNumber + '" > <a href="#"> <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">'
-                    + $("#productTypeText").val().trim().toUpperCase() + '</a> </li>')
-
-                $('[data-role=listview]').listview().listview('refresh');
-
-
-            })
-            //لتخزين العناصر في الإنترنت 
-            $("#StoreNewProductTypesInDB").click(() => {
-
-                var allTypes = [];
-
-                var allItems = $('#listviewTypes li');
-
-                for (var i = 0; i < allItems.length; i++) {
-                    var typeItem = {};
-                    typeItem.pName = $(allItems[i]).text();
-                    typeItem.pNumber = $(allItems[i]).attr("data-number");
-                    allTypes.push(typeItem);
-                }
-                if (allTypes.length) {
-
-
-                    socket.emit("StoreNewProductTypes", allTypes);
-                }
-                else
-                    swal("لا يوجد أنواع جديدة لتخزينها ")
-
-            })
+            AddScriptTagToHead("scripts/Pages/GlobalVariables.js")
+            AddScriptTagToHead("scripts/Pages/ProductTypesManagePageScript.js")
+            AddScriptTagToHead("scripts/Pages/BagsGeneratedNumber.js")
             //هذا الحدث للذهاب لصفحة المنتجات 
+
+
+
+            
             $("#GoToProductTypesPage").click(() => {
                 GetAllProductTypes();
                 $.mobile.navigate("#ProductTypesManagePage");
             })
+
             //  هذا التابع يطبع تقرير عن البالات التي تم تخزينها 
             PrintScannedProductReport()
             //الكود التالي لاستيراد أرقام الكونتيرات التي تم العمل عليها 
@@ -308,8 +265,19 @@
 
     }; //End Of OnDeviceReady
 
+    //Add <script tag > to Head Document
+    function AddScriptTagToHead(src) {
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = src;
+        $("head").append(s);
+    }
+
+
+
     //Init QrCode
     function InitQrCodeObject() {
+
         return new Promise(function (resolve, reject) {
             try {
 
@@ -438,14 +406,15 @@
 
         })
     }
+
     //الحصول على أنواع المنتجات CCR,MCP,Lpt
     function GetAllProductTypes() {
 
         socket.emit("GetAllProductTypes");
+
         socket.on("GettingAllProductTypes", (allTypes) => {
 
             if (allTypes.length) {
-                alert(allTypes.length);
                 var listview = $("#listviewTypes");
                 listview.empty();
 

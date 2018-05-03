@@ -32,34 +32,22 @@
     <Compile Include="libraries\idGenerator.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MongoRepository.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Mongo\Container.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mongo\mongo_models\types_model.js">
+    <Compile Include="Mongo\mongo_models\BagsGenerator.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mongo\mongo_models\BagsScanned.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mongo\ProductTypes.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mongo\Product.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Mongo\mongo_models\ScannedProduct.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mongo\Sockets\SocketEvent.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mongo\Types.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="test.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Test2.js">
       <SubType>Code</SubType>
     </Compile>
     <Content Include="forever\development.json">
@@ -73,7 +61,6 @@
     <Folder Include="Mongo\" />
     <Folder Include="Mongo\mongo_models\" />
     <Folder Include="forever\" />
-    <Folder Include="Mongo\Sockets\" />
     <Folder Include="LogFiles\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

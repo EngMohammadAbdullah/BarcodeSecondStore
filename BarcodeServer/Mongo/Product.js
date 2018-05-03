@@ -25,6 +25,7 @@ var Product = {
         })
 
     },
+
     generateContainerProducts: function (containerProduct) {
         return new Promise((resolve, reject) => {
             Container.createContainer().then(function (container) {
@@ -52,7 +53,7 @@ var Product = {
 
                         }
 
-                   
+
 
                         containerProduct.save(function (err) {
                             if (err) {
@@ -84,6 +85,7 @@ var Product = {
 
         });
     }
+
 };
 
 module.exports = Product;

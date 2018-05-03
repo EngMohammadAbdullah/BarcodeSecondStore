@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <!--
+    <!--+
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
@@ -58,17 +58,16 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <!-- End of Style -->
     <!-- Db Dll -->
+
+
     <script>
 
         $(document).on("mobileinit", function () {
-
             $.mobile.autoInitializePage = false;
-
-
         });
 
         $(document).ready(function () {
-            window.location.hash = 'GoToProductTypesPage';
+            window.location.hash = 'BagsPage';
             $.mobile.initializePage();
             //هذا السطر أزال اللودنغ من وسط الشاشة!!
             $.mobile.loading("hide");
@@ -78,18 +77,21 @@
 
     </script>
 
-
 </head>
 <body>
+
+
 
     <div id="home" data-role="page">
         <div data-role="header" data-position="fixed">
             <h3>GoToProductTypesPage</h3>
         </div>
         <div role="main" class="ui-content">
-            <a id="GoToOpenCloseContainerPage" class="ui-btn">OpenCloseContainerPage</a>
+            <a id="GoToOpenCloseContainerPage"
+               class="ui-btn">OpenCloseContainerPage</a>
             <a id="testLoader" class="ui-btn">Test Loader</a>
-            <a id="GoToAllScannedContainerNumberProductsPage" class="ui-btn">
+            <a id="GoToAllScannedContainerNumberProductsPage"
+               class="ui-btn">
                 AllScannedContainerNumberProductsPage
             </a>
             <a id="GoToProductTypesPage" class="ui-btn">
@@ -97,6 +99,42 @@
             </a>
         </div>
     </div>
+
+    <!--هذه الصفحة لإدارة الأقسام الرئيسية للأنواع  -->
+    <!--مثلا : Ramaga : "CCR","CCH",...  -->
+    <!-- أوقفت تنفيذه لفترة  -->
+    <div id="CategoryTypesPage" data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h3> Bugs Page </h3>
+        </div>
+        <div role="main" class="ui-content">
+            <input type="text" id="categoryProductTypeText" placeholder="Enter Type" />
+            <br />
+            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
+               id="addCategoryProductType">Add</a>
+            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
+               id="StoreNewCategoryProductTypesInDB">Store</a>
+            <br />
+            <ul id="listviewCategoryTypes" data-role="listview" data-inset="true"></ul>
+        </div>
+    </div>
+
+    <!--  Bugs صفحة ال   -->
+    <!--   هذه الصفحة لنوليد أرقام لكل كيس , و هو الوقت الذي تم توليده في الوقت الذل تم تم طلب الرقم    -->
+    <div id="BagsPage" data-role="page">
+
+        <div data-role="header" data-position="fixed">
+            <h3> Bugs Page </h3>
+        </div>
+
+        <div id="BagsPageMain" role="main" class="ui-content">
+            <a id="goToQrcodePage" class="ui-btn">Test Loader</a>
+
+        </div>
+
+    </div>
+
+
 
     <!-- هذه الصفحة لإدارة أنواع البالات   -->
     <div id="ProductTypesManagePage"
@@ -118,6 +156,7 @@
             <h3>Types</h3>
         </div>
     </div>
+
     <!-- هذه الصفحة لاختبار طباعة تقرير  -->
     <div id="testPrintReport" data-role="page">
         <div data-role="header" data-position="fixed">
@@ -176,7 +215,7 @@
         </div>
     </div>
 
-    <!-- plugin هذه الصفحة تجريبية لاختبار ال  -->
+    <!-- diagnosticPluginPage هذه الصفحة تجريبية لاختبار ال  -->
     <div id="diagnosticPluginPage" data-role="page">
         <div data-role="header" data-position="fixed">
             <h3>Header</h3>
@@ -236,7 +275,8 @@
         </div>
         <div id="testDiv" role="main" class="ui-content">
             <div class="ui-field-contain">
-                <input id="gk-218yUJF" value="5" min="1" max="10" type="range">
+                <input id="gk-218yUJF" value="5" min="1"
+                       max="10" type="range">
             </div>
             <br />
         </div>
@@ -271,7 +311,9 @@
     <script src="scripts/loadEvents.js"></script>
     <script src="scripts/DatabaseOperations.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js">
+
+    </script>
     <script type="text/javascript" src="scripts/index.js"></script>
 
 </body>

@@ -19,26 +19,20 @@
 
     var container = require("./Mongo/Container.js");
     var scannedContainer = require("./Mongo/mongo_models/ScannedProduct.js");
-
+    var BagGenerator = require("./Mongo/mongo_models/BagsGenerator.js");
+    var BagScanned = require("./Mongo/mongo_models/BagsScanned");
     var productTypes = require("./Mongo/ProductTypes.js");
 
 
     try {
 
-        productTypes.createSchemaType().then((schema) => {
+        BagScanned.createScannedSchema().then((bagContainer) => {
+            BagScanned.StoreScannedBag(bagContainer, 456897).then((no) => {
 
-            productTypes.readTypes(schema).then((allTypes) => {
-                if (!allTypes.length) {
+                console.log(no);
+            });
 
-                    console.log("لا يوجد عناصر لعرضها");
-
-                }
-                console.log(allTypes)
-
-            })
-
-        });
-
+        })
 
     } catch (e) {
 

@@ -434,9 +434,7 @@ h1 {
 
 
 .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
-    font-size: 28px;
-    width: 100%;
-    height: 40px;
+  font-family:'Times New Roman'
 }
 
 .ui-slider-track .ui-btn.ui-slider-handle {

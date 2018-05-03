@@ -250,10 +250,7 @@ var ScannedProduct = {
 
                             return reject()
                         }
-
-
                         return resolve(lastContainer);
-
                     })
 
 
