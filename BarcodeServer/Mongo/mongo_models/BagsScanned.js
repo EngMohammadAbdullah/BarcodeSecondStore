@@ -1,4 +1,6 @@
-﻿var mongoose = require('mongoose');
+﻿//I replaced This File with ScannedBags
+
+var mongoose = require('mongoose');
 var randomize = require('randomatic');
 
 var BagsScanned = {
@@ -47,6 +49,7 @@ var BagsScanned = {
             }
         });
     },
+
     StoreScannedBag: function (schema, BagNumber) {
         return new Promise((resolve, reject) => {
             schema.find({}).exec((err, allDocs) => {

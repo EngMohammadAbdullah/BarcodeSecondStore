@@ -98,8 +98,7 @@ var Container = {
 
                 if (containerDoc[0].container_number.length) {
 
-                    console.log("[0]" + containerDoc[0].container_number[0]);
-                    console.log("length" + containerDoc[0].container_number.length);
+                    
                     containerDoc[0].container_number =
                         containerDoc[0].container_number.slice(1);
 

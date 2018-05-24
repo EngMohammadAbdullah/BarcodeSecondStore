@@ -19,20 +19,39 @@
 
     var container = require("./Mongo/Container.js");
     var scannedContainer = require("./Mongo/mongo_models/ScannedProduct.js");
-    var BagGenerator = require("./Mongo/mongo_models/BagsGenerator.js");
-    var BagScanned = require("./Mongo/mongo_models/BagsScanned");
+    var ScannedBag = require("./Mongo/mongo_models/ScannedBags");
     var productTypes = require("./Mongo/ProductTypes.js");
-
 
     try {
 
-        BagScanned.createScannedSchema().then((bagContainer) => {
-            BagScanned.StoreScannedBag(bagContainer, 456897).then((no) => {
+        var oo = [{
+            BagType: "CCH",
+            BagNumber: "465454798322",
+        },
+        {
+            BagType: "CCH",
+            BagNumber: "465454798322",
+        },
+        {
+            BagType: "CCH",
+            BagNumber: "465454798323",
+        }];
+        ScannedBag.createScannedSchema().then(schema => {
+            ScannedBag.StoreScannedBag(schema, oo).then((status) => {
 
-                console.log(no);
-            });
+
+                console.log(status);
+
+            })
+
 
         })
+
+        // CheckExistingSchema("ScannedProduct").then((sContaier) => {
+
+
+
+
 
     } catch (e) {
 

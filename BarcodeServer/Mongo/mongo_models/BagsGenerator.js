@@ -1,8 +1,5 @@
 ﻿
 var mongoose = require('mongoose');
-var randomize = require('randomatic');
-
-
 
 var BagsNumberGenerator = {
 
@@ -17,8 +14,8 @@ var BagsNumberGenerator = {
             });
 
 
-            var BagNumbersGenerator =
-                mongoose.model('BagNumbersGenerator', BagSchema);
+            //var BagNumbersGenerator =
+            //    mongoose.model('BagNumbersGenerator', BagSchema);
 
 
             if (mongoose.connection.modelNames()) {
@@ -33,7 +30,8 @@ var BagsNumberGenerator = {
                 }
                 else {
 
-                    var Container = mongoose.model('BagNumbersGenerator', BagSchema);
+                    var Container = mongoose.model('BagNumbersGenerator',
+                        BagSchema);
                     return resolve(Container);
                 }
             }

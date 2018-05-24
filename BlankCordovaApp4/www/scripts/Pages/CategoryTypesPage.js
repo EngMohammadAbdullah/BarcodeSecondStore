@@ -29,6 +29,8 @@ $("#addProductType").click(() => {
 
 
 })
+
+
 //لتخزين العناصر في الإنترنت 
 $("#StoreNewProductTypesInDB").click(() => {
 

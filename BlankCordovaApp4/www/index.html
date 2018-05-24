@@ -67,18 +67,158 @@
         });
 
         $(document).ready(function () {
-            window.location.hash = 'BagsPage';
+            window.location.hash = "OpenCloseContainerPage";
             $.mobile.initializePage();
             //هذا السطر أزال اللودنغ من وسط الشاشة!!
             $.mobile.loading("hide");
         });
 
 
-
     </script>
+
 
 </head>
 <body>
+
+    <!--<div is="page11" id="home" data-role="page">
+        <div is="content" role="main" class="ui-content">
+            <h1 style="text-align:center;">Ovi Maps</h1>
+            <input type="search" id="gk56hfbl">
+            <div id="fisrtDiv" class="ui-grid-b" style="height:95px">
+                <div id="CCR" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">My position</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-MGfR1-E9G7U/Uw2QSea8i1I/AAAAAAAA3Pc/KKurF06CjRs/s000/search.png" style="width:70px; margin-left:10px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Find places</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-rG-ykuzrtWw/Uw2QSf2U34I/AAAAAAAA3Pg/Z6pjvUiBCSs/s000/speaker.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Share locatio</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div id="MMF" is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh5.googleusercontent.com/-PDT9W4M6E2Y/Uw2QQoRNiQI/AAAAAAAA3O4/t3GOvaPQrzs/s000/favourite.png" style="width:70px; margin:3px 10px -3px 12px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Favourites</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-SDBmdP8EsYU/Uw2QRnxHizI/AAAAAAAA3PM/Ued2dF73kus/s000/location.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Drive</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-tQsHvkYyjOE/Uw2QR4r-paI/AAAAAAAA3PU/E3GqkcOyhy8/s000/location_pin.png" style="width:70px; margin-left:10px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Walk</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div id="yyu" is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-N--N749p7_Q/Uw2QQhe3jnI/AAAAAAAA3O0/NhBOIu84a1I/s000/graph.png" style="width:70px; margin:0 15px 0 12px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Weather</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-ASL4_sfLipI/Uw2QQlGTNOI/AAAAAAAA3Os/YkLvLvoEzek/s000/flipchart.png" style="width:70px; margin-left:12px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Events</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh4.googleusercontent.com/-FX_v_ScqSeM/Uw2QS3FDbsI/AAAAAAAA3Po/PzrjXbECLqk/s800/suitcase.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Lonely Planet</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div id="ccq" is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh5.googleusercontent.com/-0A2gwHnDmqg/Uw2QRVfq3XI/AAAAAAAA3PE/lTSK7NlbrLk/s000/house.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">My position</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-MGfR1-E9G7U/Uw2QSea8i1I/AAAAAAAA3Pc/KKurF06CjRs/s000/search.png" style="width:70px; margin-left:10px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Find places</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-rG-ykuzrtWw/Uw2QSf2U34I/AAAAAAAA3Pg/Z6pjvUiBCSs/s000/speaker.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Share locatio</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh5.googleusercontent.com/-PDT9W4M6E2Y/Uw2QQoRNiQI/AAAAAAAA3O4/t3GOvaPQrzs/s000/favourite.png" style="width:70px; margin:3px 10px -3px 12px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Favourites</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-SDBmdP8EsYU/Uw2QRnxHizI/AAAAAAAA3PM/Ued2dF73kus/s000/location.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Drive</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-tQsHvkYyjOE/Uw2QR4r-paI/AAAAAAAA3PU/E3GqkcOyhy8/s000/location_pin.png" style="width:70px; margin-left:10px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Walk</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-N--N749p7_Q/Uw2QQhe3jnI/AAAAAAAA3O0/NhBOIu84a1I/s000/graph.png" style="width:70px; margin:0 15px 0 12px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Weather</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-ASL4_sfLipI/Uw2QQlGTNOI/AAAAAAAA3Os/YkLvLvoEzek/s000/flipchart.png" style="width:70px; margin-left:12px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Events</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh4.googleusercontent.com/-FX_v_ScqSeM/Uw2QS3FDbsI/AAAAAAAA3Po/PzrjXbECLqk/s800/suitcase.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Lonely Planet</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh5.googleusercontent.com/-0A2gwHnDmqg/Uw2QRVfq3XI/AAAAAAAA3PE/lTSK7NlbrLk/s000/house.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">My position</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-MGfR1-E9G7U/Uw2QSea8i1I/AAAAAAAA3Pc/KKurF06CjRs/s000/search.png" style="width:70px; margin-left:10px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Find places</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-rG-ykuzrtWw/Uw2QSf2U34I/AAAAAAAA3Pg/Z6pjvUiBCSs/s000/speaker.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Share locatio</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh5.googleusercontent.com/-PDT9W4M6E2Y/Uw2QQoRNiQI/AAAAAAAA3O4/t3GOvaPQrzs/s000/favourite.png" style="width:70px; margin:3px 10px -3px 12px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Favourites</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-SDBmdP8EsYU/Uw2QRnxHizI/AAAAAAAA3PM/Ued2dF73kus/s000/location.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Drive</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-tQsHvkYyjOE/Uw2QR4r-paI/AAAAAAAA3PU/E3GqkcOyhy8/s000/location_pin.png" style="width:70px; margin-left:10px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Walk</h5>
+                </div>
+            </div>
+            <div is="grid" class="ui-grid-b" style="height:95px">
+                <div is="block" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-N--N749p7_Q/Uw2QQhe3jnI/AAAAAAAA3O0/NhBOIu84a1I/s000/graph.png" style="width:70px; margin:0 15px 0 12px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Weather</h5>
+                </div>
+                <div is="block" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-ASL4_sfLipI/Uw2QQlGTNOI/AAAAAAAA3Os/YkLvLvoEzek/s000/flipchart.png" style="width:70px; margin-left:12px;">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Events</h5>
+                </div>
+                <div is="block" class="ui-block-c" style="height:100%">
+                    <img is="dragable" src="https://lh4.googleusercontent.com/-FX_v_ScqSeM/Uw2QS3FDbsI/AAAAAAAA3Po/PzrjXbECLqk/s800/suitcase.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Lonely Planet</h5>
+                </div>
+            </div>
+        </div>
+        <div is="footer" data-role="footer" data-position="fixed" data-theme="b">
+            <h3>InfoChamp</h3>
+            <a is="button" class="ui-btn ui-btn-left  ui-btn-icon-left ui-icon-gear ui-btn-icon-notext ui-corner-all" style="margin-top:0;"></a>
+            <a is="button" class="ui-btn ui-btn-right ui-btn-icon-left ui-icon-delete ui-btn-icon-notext ui-corner-all" style="margin-top:0;"></a>
+        </div>
+    </div>-->
+
+
 
 
 
@@ -100,41 +240,53 @@
         </div>
     </div>
 
-    <!--هذه الصفحة لإدارة الأقسام الرئيسية للأنواع  -->
-    <!--مثلا : Ramaga : "CCR","CCH",...  -->
-    <!-- أوقفت تنفيذه لفترة  -->
-    <div id="CategoryTypesPage" data-role="page">
-        <div data-role="header" data-position="fixed">
-            <h3> Bugs Page </h3>
-        </div>
-        <div role="main" class="ui-content">
-            <input type="text" id="categoryProductTypeText" placeholder="Enter Type" />
-            <br />
-            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
-               id="addCategoryProductType">Add</a>
-            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
-               id="StoreNewCategoryProductTypesInDB">Store</a>
-            <br />
-            <ul id="listviewCategoryTypes" data-role="listview" data-inset="true"></ul>
-        </div>
-    </div>
+
 
     <!--  Bugs صفحة ال   -->
     <!--   هذه الصفحة لنوليد أرقام لكل كيس , و هو الوقت الذي تم توليده في الوقت الذل تم تم طلب الرقم    -->
     <div id="BagsPage" data-role="page">
 
         <div data-role="header" data-position="fixed">
-            <h3> Bugs Page </h3>
+
+            <input type="search" id="gk56hfbl">
         </div>
 
-        <div id="BagsPageMain" role="main" class="ui-content">
-            <a id="goToQrcodePage" class="ui-btn">Test Loader</a>
+        <div role="main" class="ui-content">
+
+
+            <div id="BagsPageMain">
+
+            </div>
 
         </div>
+        <div is="footer" data-role="footer" data-position="fixed" data-theme="b">
 
+        </div>
     </div>
 
 
+    <!--  صفحة البالات و هي تولد أزرار للأنواع و تجلب رقم للبالة من السبرفر      -->
+    <!-- مثال : CCR-4566-4569 رقم البالة-رقم الكونتير-نوع البالة -->
+
+    <div id="ProductTypesPage" data-role="page">
+
+        <div data-role="header" data-position="fixed">
+
+            <input type="search" id="ProductTypesSearch">
+
+        </div>
+
+        <div role="main" class="ui-content">
+
+            <div id="ProductTypesMain">
+
+            </div>
+
+        </div>
+        <div data-role="footer" data-position="fixed" data-theme="b">
+
+        </div>
+    </div>
 
     <!-- هذه الصفحة لإدارة أنواع البالات   -->
     <div id="ProductTypesManagePage"
@@ -168,6 +320,7 @@
         </div>
     </div>
 
+
     <!-- هذه الصفحة لإنشاء container  -->
     <!-- أو إغلاقه  -->
     <div id="OpenCloseContainerPage" data-role="page" data-theme="b">
@@ -178,7 +331,8 @@
             <h1 id="containerNoHeader">4546456468</h1>
             <div class="ui-grid-b" style="height:60px">
                 <div class="ui-block-a" style="height:100%;width:50%">
-                    <a id="openContainerScanDocument" class="ui-btn ui-btn-icon-left ui-icon-gear button">Open&nbsp;</a>
+                    <a id="openContainerScanDocument"
+                       class="ui-btn ui-btn-icon-left ui-icon-gear button">Open&nbsp;</a>
                 </div>
                 <div class="ui-block-b" style="height:100%;width:50%">
                     <a id="closeContainerScanDocument" class="ui-btn ui-btn-icon-left ui-icon-gear">Close</a>
@@ -195,6 +349,7 @@
 
 
     <!--  هذه الصفحة لعرض    المنتجات التي تم مسحها لرقم معين     -->
+
     <div id="AllScannedContainerNumberProductsPage" data-role="page">
         <div data-role="header" data-position="fixed">
             <h3>Header</h3>
@@ -204,13 +359,7 @@
             <a class="ui-btn ui-btn-b ui-btn-icon-left ui-icon-camera">تجربة</a>
 
             <ul id="listViewScannedProducts"
-                data-role="listview" data-inset="true">
-                <li data-theme="b">
-                    <a href="#">
-                        <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">Item
-                    </a>
-                </li>
-            </ul>
+                data-role="listview" data-inset="true"></ul>
 
         </div>
     </div>
@@ -226,8 +375,6 @@
 
         </div>
     </div>
-
-
 
 
     <!-- هذه الصفحة لتسجيل النتتجات  -->
@@ -246,6 +393,21 @@
         </div>
     </div>
 
+    <!-- هذه الصفحة لتسجيل الأكياس  -->
+    <!-- يقوم بتشغيل الكاميرا -->
+    <div id="QrcodeBagsScanPage" data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h3>Header</h3>
+        </div>
+        <div role="main" class="ui-content">
+            <a id="QrcodeScannerBtn"
+               class="ui-btn ui-icon-plus ui-btn-icon-left ui-shadow ui-btn-b">إضافة</a>
+            <a id="ShowSCannedItemsBtn" class="ui-btn ui-icon-plus ui-btn-icon-left ui-shadow ui-btn-b">
+                show SCanned Items
+            </a>
+
+        </div>
+    </div>
 
 
     <!-- هذه الصفحة لطباعة ال Qrcode  -->
@@ -264,11 +426,9 @@
     </div>
 
 
-
-
-
-
     <!--هذه الصفحة تقوم بتوليد أزرار للطبعة عبر  الشبكة-->
+    <!-- هذه الصفحة سأقوم بالاستغناء عنها و استبدالها يصفحة تسبه ال Bags  -->
+
     <div id="testPage" data-role="page">
         <div data-role="header" data-position="fixed">
             <h1>Header</h1>
@@ -284,6 +444,8 @@
             <h1>Footer</h1>
         </div>
     </div>
+
+
 
     <!-- قائمة الزبائن -->
     <div id="CustomerList" data-role="page">
@@ -306,6 +468,8 @@
         </div>
 
     </div>
+
+
 
     <script src="scripts/Dbfile.js"></script>
     <script src="scripts/loadEvents.js"></script>

@@ -1,6 +1,8 @@
 ﻿var allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 (
     function ProductTypesManagePageScriptInit() {
+
+
         try {
 
             //هذا الحدث لإضافة نوع جديد للائحة
@@ -33,13 +35,15 @@
                 $('#listviewTypes').listview().listview('refresh');
 
 
-            })
+            });
+
             //لتخزين العناصر في الإنترنت 
             $("#StoreNewProductTypesInDB").click(() => {
 
                 var allTypes = [];
 
                 var allItems = $('#listviewTypes li');
+
                 for (var i = 0; i < allItems.length; i++) {
                     var typeItem = {};
                     typeItem.pName = $(allItems[i]).text();

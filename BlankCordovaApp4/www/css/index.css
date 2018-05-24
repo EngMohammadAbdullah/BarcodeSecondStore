@@ -130,6 +130,7 @@ h1 {
 .panel-body input[type=checkbox]:checked + label {
     text-decoration: line-through;
     color: rgb(128, 144, 160);
+    
 }
 
 .list-group-item:hover, a.list-group-item:focus {
@@ -506,4 +507,13 @@ html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit {
     margin-bottom: 15px;
     font-family: digital_font;
     color: #c8cc3e;
+}
+
+
+
+.foundedProductype{
+
+    border:solid 2px rgb(248, 148, 6);
+    display:inline;
+    color:red;
 }

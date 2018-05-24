@@ -41,6 +41,9 @@
     <Compile Include="Mongo\mongo_models\BagsScanned.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mongo\mongo_models\ScannedBags.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mongo\ProductTypes.js">
       <SubType>Code</SubType>
     </Compile>

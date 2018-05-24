@@ -79,6 +79,7 @@ var ScannedProduct = {
 
             this.GetLastScannedContainer(container, containerNumber)
                 .then((lastContainer) => {
+                    console.log(lastContainer);
 
                     function CheckExistingProduct() {
                         return new Promise((resolve, reject) => {
@@ -93,14 +94,16 @@ var ScannedProduct = {
                                 }
                             }
 
-                            return resolve(false);
+
+                            return resolve(false)
+
+
                         })
 
                     }
 
                     if (lastContainer) {
                         CheckExistingProduct().then((isExist) => {
-                            console.log(isExist)
                             if (isExist == false) {
                                 lastContainer.scannedProductArray.push(ScannedProduct)
                                 lastContainer.save((err) => {
@@ -174,10 +177,11 @@ var ScannedProduct = {
             ScannedProduct.IsExistOpenSCannedProduct(container)
                 .then(function (existDoc) {
                     if (existDoc) {
-                        console.log(existDoc)
+
                         return resolve(existDoc)
                     }
                     else {
+
                         //لم أرى داع لهذا الكود 
                         //طالما لا يوجد مستند مفتوح  
                         //لا يوجد داع 
@@ -312,23 +316,25 @@ var ScannedProduct = {
     //هنا للتأكد من وجود كونتير مفتوح ,  
     // "ClosedContainer": false, 
     // و ذلك للتأكد قبل إنشاء كونتير جديد برقم جديد 
+
     IsExistOpenSCannedProduct: function (container) {
         return new Promise((resolve, reject) => {
 
-            container.findOne({ ClosedContainer: false }).exec((err, doc) => {
+            container.findOne({
+                ClosedContainer: false
+            }).exec((err, doc) => {
 
                 if (err) {
                     return reject(err)
                 }
 
                 return resolve(doc);
-
             })
-            return resolve(null)
+
+            // return resolve(null)
 
         })
     },
-
 
     getAllScannedContainerNumber: function (scannedContainer) {
         return new Promise((resolve, reject) => {
@@ -368,10 +374,87 @@ var ScannedProduct = {
 
 
         })
+    },
+
+    AddScannedProductTo: function (container, containerNumber, ScannedProducts) {
+        return new Promise((resolve, reject) => {
+            function FindDocumentBy() {
+                return new Promise((resolve, reject) => {
+
+                    container.findOne({ "container_number": containerNumber },
+                        (err, lastContainer) => {
+                            if (err) {
+
+                                return reject()
+
+                            }
+
+
+                            return resolve(lastContainer)
+                        })
+                });
+            }
+
+            function ProductExist(Products, SearchedProduct) {
+                console.log(SearchedProduct.productNumber);
+                for (var i = 0; i < Products.length; i++) {
+                    if (Products[i].productNumber ==
+                        SearchedProduct.productNumber) {
+
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            function GetNonExistProducts(lastContainer) {
+                return new Promise((resolve, reject) => {
+                    var nonExistProducts = [];
+
+                    if (lastContainer.
+                        scannedProductArray.length == 0) {
+                        return resolve(ScannedProducts);
+                    }
+                    else {
+
+                        for (var i = 0; i < ScannedProducts.length; i++) {
+                            if (ProductExist(lastContainer.
+                                scannedProductArray, ScannedProducts[i])) {
+
+                                nonExistProducts.push(ScannedProducts[i]);
+                            }
+
+                        }
+                        return resolve(nonExistProducts);
+                    }
+                });
+            }
+
+            FindDocumentBy().then((lastContainer) => {
+                if (lastContainer) {
+
+                    GetNonExistProducts(lastContainer)
+                        .then(nonExistProducts => {
+
+                            for (var i = 0; i < nonExistProducts.length; i++) {
+                                lastContainer.scannedProductArray.push(nonExistProducts[i])
+                            }
+
+                            lastContainer.save((err) => {
+                                if (err) {
+                                    reject(false);
+                                }
+
+                                return resolve(nonExistProducts.length);
+                            })
+                        })
+                }
+            })
+
+
+        })
     }
-
-
-
 
 
 };
