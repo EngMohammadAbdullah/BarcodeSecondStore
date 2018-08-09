@@ -10,7 +10,7 @@ $("#QrcodeBagsScanPage .ui-content #QrcodeScannerBtn")
 $("#QrcodeBagsScanPage .ui-content #ShowSCannedItemsBtn")
     .click(function () {
 
-        alert(InitializeScannedBags(scannedBags));
+        //alert(InitializeScannedBags(scannedBags));
 
         socket.emit("StoringScannedBag",
             InitializeScannedBags(scannedBags));
@@ -50,7 +50,6 @@ function scanBag() {
         function (error) {
 
         },
-
         {
             preferFrontCamera: false, // iOS and Android
             showFlipCameraButton: true, // iOS and Android
@@ -100,7 +99,6 @@ function InitializeScannedBags(scannedProductStrings) {
     var scannedBags = [];
     var productsNumbers = [];
 
-
     for (var i = 0; i < scannedProductStrings.length; i++) {
         var temp = ExtractScannedBagObj(scannedProductStrings[i]);
         if (productsNumbers.indexOf(temp.BagNumber) == -1) {
@@ -108,6 +106,5 @@ function InitializeScannedBags(scannedProductStrings) {
             productsNumbers.push(temp.BagNumber);
         }
     }
-    console.log(scannedBags.length);
     return scannedBags;
 }

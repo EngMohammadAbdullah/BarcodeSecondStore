@@ -33,9 +33,9 @@
         $(".ui-grid-b div").css("display", "initial");
 
     });
-    $(".ui-grid-b .ui-block-a").on("click", function () {
-        alert($(this).attr("id"));
-    })
+    //$(".ui-grid-b .ui-block-a").on("click", function () {
+    //    alert($(this).attr("id"));
+    //})
 
 
 })()

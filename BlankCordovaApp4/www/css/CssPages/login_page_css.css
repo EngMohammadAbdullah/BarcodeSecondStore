@@ -1,0 +1,35 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+
+
+#page-signin h3 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 26px;
+    text-align: center;
+}
+
+#page-signin h1 {
+    font-size: 22px;
+    font-weight: bold
+}
+
+#page-signin label {
+    font-family: 'Shrikhand', cursive;
+    font-size: 16px;
+    margin-left: 10px;
+    color: #808080;
+}
+
+#page-signin input {
+    border-width: 0;
+    padding-left: 10px
+}
+
+
+.bi-invalid-input {
+    background-color: #fffacd !important;
+}
+
+.bi-invisible {
+    display: none;
+}

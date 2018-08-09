@@ -106,7 +106,7 @@ var ScannedBags = {
 
                     GetNonExistProducts(allDocs[0])
                         .then(nonExistProducts => {
-                            console.log(allDocs[0].scannedBagsArray);
+                            // console.log(allDocs[0].scannedBagsArray);
                             for (var i = 0; i < nonExistProducts.length; i++) {
                                 allDocs[0].scannedBagsArray.
                                     push(nonExistProducts[i])

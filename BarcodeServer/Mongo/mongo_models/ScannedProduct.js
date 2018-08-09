@@ -76,7 +76,6 @@ var ScannedProduct = {
     AddScannedProduct: function (container, containerNumber, ScannedProduct) {
 
         return new Promise((resolve, reject) => {
-
             this.GetLastScannedContainer(container, containerNumber)
                 .then((lastContainer) => {
                     console.log(lastContainer);
@@ -173,7 +172,6 @@ var ScannedProduct = {
     GetLastScannedContainer: function (container, containerNumber) {
 
         return new Promise((resolve, reject) => {
-
             ScannedProduct.IsExistOpenSCannedProduct(container)
                 .then(function (existDoc) {
                     if (existDoc) {
@@ -273,7 +271,6 @@ var ScannedProduct = {
                 },
                 (err, lastContainer) => {
 
-
                     if (err) {
 
                         return reject()
@@ -288,7 +285,7 @@ var ScannedProduct = {
                     // لا يقوم باللإغلاق !!
 
                     if (lastContainer.scannedProductArray.length < 400) {
-                        return resolve(false);
+                        return resolve("Less than 400 cannot closed!!");
                     }
 
                     lastContainer.ClosedContainer = true;
@@ -299,12 +296,8 @@ var ScannedProduct = {
                             return reject()
                         }
 
-
                         return resolve(true);
-
                     })
-
-
                 });
 
 

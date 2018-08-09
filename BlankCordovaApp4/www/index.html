@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
     <!--+
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
@@ -58,7 +59,19 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <!-- End of Style -->
     <!-- Db Dll -->
+    <!-- مكتبة لل Floating Point -->
+    <link href="css/materialize.min.css" rel="stylesheet" />
+    <script src="scripts/materialize.js"></script>
 
+    <link href="css/CalenderTime.css" rel="stylesheet" />
+    <link href="css/CssPages/MainPageCss.css" rel="stylesheet" />
+
+    <!-- هنا للسحب للأسفل لإعادة تحميل الصفحة  -->
+    <script src="scripts/jquery.pull-to-refresh.js"></script>
+
+    <!-- css for login Page  -->
+    <link href="css/CssPages/login_page_css.css" rel="stylesheet" />
+    <link href="css/CssPages/CustomerOrderListCss.css" rel="stylesheet" />
 
     <script>
 
@@ -66,160 +79,301 @@
             $.mobile.autoInitializePage = false;
         });
 
+        //$(document).ready(function () {
+        //    window.location.hash = "page-signin";
+        //    $.mobile.initializePage();
+        //    //هذا السطر أزال اللودنغ من وسط الشاشة!!
+        //    $.mobile.loading("hide");
+        //});
+    </script>
+
+    <script>
+
         $(document).ready(function () {
-            window.location.hash = "OpenCloseContainerPage";
-            $.mobile.initializePage();
-            //هذا السطر أزال اللودنغ من وسط الشاشة!!
-            $.mobile.loading("hide");
+
+            $("#TestRaioButtonsPage div[class^='ui-block']").on("click",
+                function () {
+                    $("#testh1").text($(this).attr("id"))
+                    var dd = $("#TestRaioButtonsPage div[class^='ui-block']")
+                        .css("border", "unset");
+                    $(this).css({
+                        border: "1.5px solid red",
+                        "border-radius": "20px"
+                    })
+                });
+
         });
 
 
+        //$(document).delegate("#CustomerOrderList", "pagebeforecreate", function () {
+
+        //    $("#CustomerOrderList input[data-type~='search']").off();
+
+        //    $("#CustomerOrderList input[data-type~='search']").on('input', function (e) {
+        //        setTimeout(function () {
+        //            $.mobile.loading('show');
+        //        }, 1);
+        //        var $customerList = $("#CustomersList");
+        //        if (!($(this).val().trim().length)) {
+        //            setTimeout(function () {
+        //                $.mobile.loading('hide');
+        //            }, 100);
+        //            $customerList.empty();
+        //            $customerList.listview().listview('refresh');
+        //        }
+        //        if ($(this).val().trim().length > 2) {
+
+        //            socket.emit("findingCustomer", $(this).val().trim());
+
+        //            socket.on("FoundedCustomer", (foundedCustomers) => {
+        //                $customerList.empty();
+        //                if (foundedCustomers.length) {
+
+        //                    for (var i = 0; i < foundedCustomers.length; i++) {
+        //                        $customerList.append('<li is="listview-li"> <a > ' +
+        //                            foundedCustomers[i].userName + "  " + foundedCustomers[i].familyName +
+        //                            ' <br />' + foundedCustomers[i].PhoneNo + ' <br />' + foundedCustomers[i].emailAddress +
+        //                            ' </a > </li > ');
+        //                    }
+
+        //                    $('#CustomerOrderList #CustomersList li a').on('click', function () {
+        //                        var ul = $(this);
+        //                        var styles = {
+        //                            "border-radius": "15px 0 15px 0",
+        //                            "font-family": "'Libre Baskerville', serif",
+        //                            "font-size": "18px",
+        //                            "border-bottom": ".5px solid #0255d8",
+        //                            "background-color": "rgb(102,45,145)",
+        //                            "color": "#fff",
+        //                            "padding": "10px",
+        //                            "padding-left": "20px"
+
+        //                        };
+        //                        $("#selectedCustomer").html(ul.html()).css(styles);
+        //                        $("#selectedCustomer").off();
+        //                        $("#selectedCustomer").on("swipeleft", function () {
+        //                            $("#selectedCustomer").text("");
+        //                            $("#selectedCustomer").removeAttr("style");
+
+        //                        });
+        //                        $("#selectedCustomer").on("swiperight", function () {
+        //                            alert($(this).text());
+        //                        });
+
+        //                    });
+
+        //                    $customerList.listview().listview('refresh');
+
+        //                }
+        //                else {
+        //                    $customerList.empty();
+        //                    $customerList.listview().listview('refresh');
+        //                }
+
+        //            })
+        //            setTimeout(function () {
+        //                $.mobile.loading('hide');
+        //            }, 100);
+        //        }
+        //    });
+
+        //});
+
+
     </script>
-
-
 </head>
+
 <body>
 
-    <!--<div is="page11" id="home" data-role="page">
-        <div is="content" role="main" class="ui-content">
-            <h1 style="text-align:center;">Ovi Maps</h1>
-            <input type="search" id="gk56hfbl">
-            <div id="fisrtDiv" class="ui-grid-b" style="height:95px">
-                <div id="CCR" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">My position</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-MGfR1-E9G7U/Uw2QSea8i1I/AAAAAAAA3Pc/KKurF06CjRs/s000/search.png" style="width:70px; margin-left:10px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Find places</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-rG-ykuzrtWw/Uw2QSf2U34I/AAAAAAAA3Pg/Z6pjvUiBCSs/s000/speaker.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Share locatio</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div id="MMF" is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh5.googleusercontent.com/-PDT9W4M6E2Y/Uw2QQoRNiQI/AAAAAAAA3O4/t3GOvaPQrzs/s000/favourite.png" style="width:70px; margin:3px 10px -3px 12px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Favourites</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-SDBmdP8EsYU/Uw2QRnxHizI/AAAAAAAA3PM/Ued2dF73kus/s000/location.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Drive</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-tQsHvkYyjOE/Uw2QR4r-paI/AAAAAAAA3PU/E3GqkcOyhy8/s000/location_pin.png" style="width:70px; margin-left:10px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Walk</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div id="yyu" is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-N--N749p7_Q/Uw2QQhe3jnI/AAAAAAAA3O0/NhBOIu84a1I/s000/graph.png" style="width:70px; margin:0 15px 0 12px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Weather</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-ASL4_sfLipI/Uw2QQlGTNOI/AAAAAAAA3Os/YkLvLvoEzek/s000/flipchart.png" style="width:70px; margin-left:12px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Events</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh4.googleusercontent.com/-FX_v_ScqSeM/Uw2QS3FDbsI/AAAAAAAA3Po/PzrjXbECLqk/s800/suitcase.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Lonely Planet</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div id="ccq" is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh5.googleusercontent.com/-0A2gwHnDmqg/Uw2QRVfq3XI/AAAAAAAA3PE/lTSK7NlbrLk/s000/house.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">My position</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-MGfR1-E9G7U/Uw2QSea8i1I/AAAAAAAA3Pc/KKurF06CjRs/s000/search.png" style="width:70px; margin-left:10px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Find places</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-rG-ykuzrtWw/Uw2QSf2U34I/AAAAAAAA3Pg/Z6pjvUiBCSs/s000/speaker.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Share locatio</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh5.googleusercontent.com/-PDT9W4M6E2Y/Uw2QQoRNiQI/AAAAAAAA3O4/t3GOvaPQrzs/s000/favourite.png" style="width:70px; margin:3px 10px -3px 12px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Favourites</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-SDBmdP8EsYU/Uw2QRnxHizI/AAAAAAAA3PM/Ued2dF73kus/s000/location.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Drive</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-tQsHvkYyjOE/Uw2QR4r-paI/AAAAAAAA3PU/E3GqkcOyhy8/s000/location_pin.png" style="width:70px; margin-left:10px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Walk</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-N--N749p7_Q/Uw2QQhe3jnI/AAAAAAAA3O0/NhBOIu84a1I/s000/graph.png" style="width:70px; margin:0 15px 0 12px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Weather</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-ASL4_sfLipI/Uw2QQlGTNOI/AAAAAAAA3Os/YkLvLvoEzek/s000/flipchart.png" style="width:70px; margin-left:12px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Events</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh4.googleusercontent.com/-FX_v_ScqSeM/Uw2QS3FDbsI/AAAAAAAA3Po/PzrjXbECLqk/s800/suitcase.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Lonely Planet</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh5.googleusercontent.com/-0A2gwHnDmqg/Uw2QRVfq3XI/AAAAAAAA3PE/lTSK7NlbrLk/s000/house.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">My position</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-MGfR1-E9G7U/Uw2QSea8i1I/AAAAAAAA3Pc/KKurF06CjRs/s000/search.png" style="width:70px; margin-left:10px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Find places</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-rG-ykuzrtWw/Uw2QSf2U34I/AAAAAAAA3Pg/Z6pjvUiBCSs/s000/speaker.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Share locatio</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh5.googleusercontent.com/-PDT9W4M6E2Y/Uw2QQoRNiQI/AAAAAAAA3O4/t3GOvaPQrzs/s000/favourite.png" style="width:70px; margin:3px 10px -3px 12px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Favourites</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-SDBmdP8EsYU/Uw2QRnxHizI/AAAAAAAA3PM/Ued2dF73kus/s000/location.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Drive</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-tQsHvkYyjOE/Uw2QR4r-paI/AAAAAAAA3PU/E3GqkcOyhy8/s000/location_pin.png" style="width:70px; margin-left:10px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Walk</h5>
-                </div>
-            </div>
-            <div is="grid" class="ui-grid-b" style="height:95px">
-                <div is="block" class="ui-block-a" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-N--N749p7_Q/Uw2QQhe3jnI/AAAAAAAA3O0/NhBOIu84a1I/s000/graph.png" style="width:70px; margin:0 15px 0 12px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Weather</h5>
-                </div>
-                <div is="block" class="ui-block-b" style="height:100%">
-                    <img is="dragable" src="https://lh3.googleusercontent.com/-ASL4_sfLipI/Uw2QQlGTNOI/AAAAAAAA3Os/YkLvLvoEzek/s000/flipchart.png" style="width:70px; margin-left:12px;">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Events</h5>
-                </div>
-                <div is="block" class="ui-block-c" style="height:100%">
-                    <img is="dragable" src="https://lh4.googleusercontent.com/-FX_v_ScqSeM/Uw2QS3FDbsI/AAAAAAAA3Po/PzrjXbECLqk/s800/suitcase.png" style="width:60px; margin:5px 15px 5px 18px">
-                    <h5 is="gk-text" style="text-align:center; margin-top:-5px;">Lonely Planet</h5>
-                </div>
-            </div>
+    <!-- login Page -->
+    <div data-role="page" id="page-signin">
+        <div data-role="header" data-theme="b" data-position="fixed">
+            <a href="#MainPage" data-icon="home" data-iconpos="notext"
+               data-transition="slide" data-direction="reverse"></a>
+            <h1>تسجيل دخول</h1>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <h3>Sign In</h3>
+            <div id="ctn-err" class="bi-invisible"></div>
+            <label for="txt-email-address">Email Address</label>
+            <input type="text"
+                   name="txt-email-address" id="txt-email-address" value="mmm">
+            <label for="txt-password">Password</label>
+            <input type="password" name="txt-password" id="txt-password"
+                   value="123">
+            <fieldset data-role="controlgroup">
+                <label><input type="checkbox" name="chk-keep-signed-in" id="chk-keep-signed-in"> Keep me signed in</label>
+            </fieldset>
+            <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop"
+               data-position-to="window" id="btn-submit" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
+            <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
         </div>
-        <div is="footer" data-role="footer" data-position="fixed" data-theme="b">
-            <h3>InfoChamp</h3>
-            <a is="button" class="ui-btn ui-btn-left  ui-btn-icon-left ui-icon-gear ui-btn-icon-notext ui-corner-all" style="margin-top:0;"></a>
-            <a is="button" class="ui-btn ui-btn-right ui-btn-icon-left ui-icon-delete ui-btn-icon-notext ui-corner-all" style="margin-top:0;"></a>
+    </div>
+
+    <!-- Main Page  -->
+    <!-- هنا الصفحة الرئيسية -->
+    <div id="MainPage" data-role="page">
+
+        <div data-role="header" data-position="fixed">
+            <h2>Main Page</h2>
+            <a style="margin-top:5px" href="#nav-panel" data-icon="bars"
+               data-iconpos="notext">Menu</a>
         </div>
-    </div>-->
+
+        <div is="dragable" id="nav-panel"
+             data-role="panel" data-position="left" data-theme="b"
+             data-position-fixed="false" data-display="overlay">
+            <h1 style="text-align:center">الصفحات</h1>
+            <a is="button" class="ui-btn"
+               href="#BagsPage" data-theme="b" data-rel="close" gid="0">صفحة الأكياس</a>
+
+            <a is="button" href="#ProductTypesManagePage" class="ui-btn" data-theme="b"
+               data-rel="close" gid="570331424">إدارة الأنواع</a>
+            <a is="button" class="ui-btn" href="#ProductTypesPage"
+               data-theme="b" data-rel="close" gid="10780180">صفحة الأكياس</a>
+            <a is="button" class="ui-btn" href="#ProductDegreeManagePage"
+               data-theme="b" data-rel="close" gid="10780180">إدارة الجودة</a>
+            <a is="button" class="ui-btn" href="#OpenCloseContainerPage"
+               data-theme="b" data-rel="close" gid="10780180">إدارة الكونتيرات</a>
+            <a is="button" class="ui-btn" href="#QrcodeScanPage"
+               data-theme="b" data-rel="close" gid="10780180">مسح بالات</a>
+
+            <a is="button" class="ui-btn" href="#QrcodeBagsScanPage"
+               data-theme="b" data-rel="close" gid="10780180">مسح الأكياس</a>
+            <a is="button" class="ui-btn" href="#CustomerList"
+               data-theme="b" data-rel="close" gid="10780180">قائمة الزبائن</a>
+            <a is="button" class="ui-btn" href="#CustomerOrderList"
+               data-theme="b" data-rel="close" gid="10780180">طلبيات الزبائن</a>
+            <a is="button" class="ui-btn" href="#verkochtBagsPage"
+               data-theme="b" data-rel="close" gid="10780180">الأكياس المباعة</a>
+            <a is="button" class="ui-btn ui-btn-active"
+               id="mainPageCloseContainer"
+               data-theme="b" data-rel="close"
+               style="font-size:22px;background-color:#e94949;border-color:#e94949"
+               gid="10780180">إغلاق الكونتير</a>
+
+        </div>
+
+        <div role="main" class="ui-content">
+            <time datetime="2014-09-20" class="icon">
+                <em id="monthContainer">Saturday</em>
+                <strong id="dayContainer">September</strong>
+                <span id="ContainerAge">20</span>
+            </time>
+            <br />
+
+
+            <!-- Code begins here -->
+            <a id="printContainerBtn"
+               class="btn-floating btn-large waves-effect waves-light red">
+                <i class="material-icons">print</i>
+            </a>
+
+            <ul id="MainPageListView" is="listview" data-role="listview" data-inset="true">
+                <li id="MainPageContainerNo" is="list-divider" data-role="list-divider">
+                    8597994
+                </li>
+                <li data-icon="false" is="listview-li">
+                    <a href="#" data-inline="true">
+                        Item
+                        <span i class='ui-li-count'>1</span>
+                    </a>
+                </li>
+                <li data-icon="false" is="listview-li">
+                    <a href="#">
+                        Item  <span i class='ui-li-count'>1</span>
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        Item
+                    </a>
+                </li>
+            </ul>
 
 
 
+
+        </div>
+
+        <div data-role="footer" class="ui-bar" data-position="fixed" data-fullscreen="true">
+            <h1 id="homePagefooterHeader" style="font-size:22px">Hello</h1>
+        </div>
+
+
+    </div>
+
+    <!-- لاختبار ال Radio Buttons  -->
+
+    <div id="TestRaioButtonsPage" data-role="page">
+        <div data-role="header" data-position="fixed">
+
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-grid-b" style="height:90px">
+                <div id="fisrt" class="ui-block-a" style="height:100%">
+                    <img is="dragable" src="images/open_box-64.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 style="text-align:center; margin-top:-5px;"></h5>
+                </div>
+                <div id="second" class="ui-block-b" style="height:100%">
+                    <img is="dragable" src="https://lh3.googleusercontent.com/-rG-ykuzrtWw/Uw2QSf2U34I/AAAAAAAA3Pg/Z6pjvUiBCSs/s000/speaker.png" style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 style="text-align:center; margin-top:-5px;"></h5>
+                </div>
+                <div id="third" class="ui-block-c" style="height:100%">
+                    <img is="dragable"
+                         src="https://lh3.googleusercontent.com/-SDBmdP8EsYU/Uw2QRnxHizI/AAAAAAAA3PM/Ued2dF73kus/s000/location.png"
+                         style="width:60px; margin:5px 15px 5px 18px">
+                    <h5 style="text-align:center; margin-top:-5px;"></h5>
+                </div>
+            </div>
+            <h1 style="text-align:center;font-size:32px" id="testh1"></h1>
+        </div>
+    </div>
 
 
     <div id="home" data-role="page">
@@ -240,8 +394,6 @@
         </div>
     </div>
 
-
-
     <!--  Bugs صفحة ال   -->
     <!--   هذه الصفحة لنوليد أرقام لكل كيس , و هو الوقت الذي تم توليده في الوقت الذل تم تم طلب الرقم    -->
     <div id="BagsPage" data-role="page">
@@ -252,6 +404,12 @@
         </div>
 
         <div role="main" class="ui-content">
+            <div style="margin-top:0" id="BagsDegreesMain">
+
+            </div>
+
+            <h1 id="BagDegreeHeader"
+                style="text-align:center;font-size:62px;margin-bottom:-5px;"></h1>
 
 
             <div id="BagsPageMain">
@@ -278,11 +436,26 @@
 
         <div role="main" class="ui-content">
 
-            <div id="ProductTypesMain">
+            <div style="margin-top:0" id="ProductDegreesMain">
+
+            </div>
+
+
+
+            <h1 id="selectedDegreeHeader"
+                style="text-align:center;font-size:62px;margin-bottom:-5px;"></h1>
+
+
+            <h1 style="text-align:center">
+
+                ------------------
+            </h1>
+            <div style="margin-top:0" id="ProductTypesMain">
 
             </div>
 
         </div>
+
         <div data-role="footer" data-position="fixed" data-theme="b">
 
         </div>
@@ -309,6 +482,33 @@
         </div>
     </div>
 
+    <!-- هذه الصفحة لإدارة أنواع درجات البالات   -->
+    <!-- كراتشي , سوريا ,    -->
+    <div id="ProductDegreeManagePage"
+         data-role="page">
+        <div data-role="header" data-position="fixed">
+            <h3>Product Degrees</h3>
+        </div>
+        <div role="main" class="ui-content">
+            <input type="text" id="productDegreeText"
+                   placeholder="Enter Degree" />
+            <br />
+            <input type="text" id="productDegreeShortcut"
+                   placeholder="Enter shortCut" />
+            <br />
+
+            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
+               id="addProductDegree">Add</a>
+            <a class="ui-btn ui-icon-plus ui-btn-icon-left ui-btn-b ui-btn-inline"
+               id="StoreNewProductDegreeInDB">Store</a>
+            <br />
+            <ul id="listviewDegrees" data-role="listview" data-inset="true"></ul>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h3>Degrees</h3>
+        </div>
+    </div>
+
     <!-- هذه الصفحة لاختبار طباعة تقرير  -->
     <div id="testPrintReport" data-role="page">
         <div data-role="header" data-position="fixed">
@@ -328,21 +528,23 @@
             <h3>O/C Container</h3>
         </div>
         <div role="main" class="ui-content">
-            <h1 id="containerNoHeader">4546456468</h1>
+            <h1 id="containerNoHeader"></h1>
             <div class="ui-grid-b" style="height:60px">
                 <div class="ui-block-a" style="height:100%;width:50%">
                     <a id="openContainerScanDocument"
                        class="ui-btn ui-btn-icon-left ui-icon-gear button">Open&nbsp;</a>
                 </div>
                 <div class="ui-block-b" style="height:100%;width:50%">
-                    <a id="closeContainerScanDocument" class="ui-btn ui-btn-icon-left ui-icon-gear">Close</a>
+                    <a id="closeContainerScanDocument"
+                       class="ui-btn ui-btn-icon-left ui-icon-gear">Close</a>
                 </div>
                 <div class="ui-block-c" style="height:100%"></div>
             </div>
 
             <br />
 
-            <ul id="listViewContainerNumbers" data-role="listview" data-inset="true"></ul>
+            <ul id="listViewContainerNumbers"
+                data-role="listview" data-inset="true"></ul>
 
         </div>
     </div>
@@ -397,7 +599,7 @@
     <!-- يقوم بتشغيل الكاميرا -->
     <div id="QrcodeBagsScanPage" data-role="page">
         <div data-role="header" data-position="fixed">
-            <h3>Header</h3>
+            <h3>Bags Scanner</h3>
         </div>
         <div role="main" class="ui-content">
             <a id="QrcodeScannerBtn"
@@ -448,26 +650,125 @@
 
 
     <!-- قائمة الزبائن -->
+
     <div id="CustomerList" data-role="page">
-        <div data-role="header" data-position="fixed">
+        <div style="background-color:rgb(102,45,145)" data-role="header" data-position="fixed">
+            <a href="#MainPage" data-icon="home" data-iconpos="notext"
+               data-transition="slide" data-direction="reverse"></a>
+
             <h1>الزبائن</h1>
-            <a class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left"
-               href="#MainPage">الرئيسية</a>
+
         </div>
         <div role="main" class="ui-content">
-            <h1 id="hContainer">Container &nbsp; <samp>1</samp></h1>
-            <form class="ui-filterable">
-                <input id="filterBasic-input" data-type="search">
-            </form>
-            <br />
-            <ul id="CustomersList" data-role="listview" data-inset="true"
-                data-filter="true" data-input="#filterBasic-input"></ul>
+
+            <!--<ul id="CustomersList" data-role="listview" data-inset="true" data-filter="true"
+                data-filter-placeholder="ابحث عن زبون" data-filter-reveal="true"></ul>
+
+
+            <h1 id="selectedCustomer"></h1>-->
+            <div id="ctn-err" class="bi-invisible"></div>
+            <label for="txt-user-Name">اسم الزبون</label>
+            <input type="text" name="txt-user-Name" id="txt-user-Name" value="">
+            <label for="txt-user-fName"> اسم العائلة</label>
+            <input type="text" name="txt-user-fName" id="txt-user-fName" value="">
+            <label for="txt-PhoneNo"> رقم التلفون </label>
+            <input type="text" name="txt-PhoneNo" id="txt-PhoneNo" value="">
+            <label for="txt-uemail-address">Email Address</label>
+            <input type="text" name="txt-uemail-address" id="txt-uemail-address" value="">
+
+            <a style="background-color:rgb(0,113,188)" data-rel="popup" data-transition="pop"
+               data-position-to="window" id="btn-User-submit"
+               class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">تخزين</a>
+
+
+
         </div>
+
         <div data-role="footer" data-position="fixed">
             <h1 id="clistNumber"></h1>
         </div>
 
     </div>
+
+
+    <!-- قائمة  n الزبائن  -->
+    <div id="CustomerOrderList" data-role="page">
+        <div style="background-color:rgb(102,45,145)" data-role="header" data-position="fixed">
+            <a href="#MainPage" data-icon="home" data-iconpos="notext"
+               data-transition="slide" data-direction="reverse"></a>
+            <h1>قائمة الزبائن</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+
+            <ul id="CustomersList" data-role="listview" data-inset="true" data-filter="true"
+                data-filter-placeholder="ابحث عن زبون" data-filter-reveal="true"></ul>
+
+            <h1 id="selectedCustomer"></h1>
+
+            <a class="ui-btn ui-icon-camera ui-btn-icon-left ui-btn-b ui-shadow"
+               style="font-size:24px" id="scanCustomerBag"
+               is="button">Scan</a>
+            <br />
+            <div videoid="N0iGh-GjCbg" is="youtube"></div>
+            <br />
+            <ul id="CustomerOrderBagsList" 
+                data-role="listview" data-inset="true">
+
+                
+
+            </ul>
+        </div>
+
+
+        <div is="footer" data-role="footer"
+             data-theme="b" style="text-align:center"
+             data-position="fixed">
+            <a class="ui-btn ui-btn-icon-left ui-btn-b ui-icon-delete" style="font-size:20px" is="button" data-transition="slideup">Clear Products</a>
+        </div>
+    </div>
+
+
+    <!-- هذه الصفحة لتوثيق الأكياس التي تم بيعها  -->
+    <!--  الأكياس و معلومات المشتري doc يتضمن كل -->
+
+    <div id="verkochtBagsPage" data-role="page">
+
+        <div style="height:auto" is="header" data-role="header" data-position="fixed">
+            <h3 style="font-size:28px;text-align:left;width:auto">Bags kopen</h3>
+        </div>
+
+        <div is="content" role="main" class="ui-content">
+            <h1 is="gk-text" style="text-align:center;margin-top:0;font-size:32px">
+                koper Informatie
+            </h1>
+            <input style="font-size:24px;margin-top:5px;margin-bottom:5px" is="text-input" type="text"
+                   id="gk-612EkTw" placeholder="koper  Name">
+            <input is="text-input" type="text"
+                   style="font-size:24px;margin-top:5px" id="gk-6122Oz2" placeholder="koper  Phone">
+            <h1 is="gk-text" style="text-align:center;font-size:32px">verkocht Bags&nbsp;</h1>
+            <a class="ui-btn ui-icon-camera ui-btn-icon-left ui-btn-b ui-shadow"
+               style="font-size:24px"
+               is="button">Scan</a>
+            <ul id="verkochtBagslistview" is="listview" data-role="listview" data-inset="true">
+                <li is="list-divider" data-role="list-divider">Divider</li>
+                <li is="listview-li">
+                    <a href="#">
+                        <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">Item
+                    </a>
+                </li>
+                <li is="listview-li">
+                    <a href="#">
+                        <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">Item
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
 
 
 
@@ -478,7 +779,30 @@
     <script type="text/javascript" src="scripts/platformOverrides.js">
 
     </script>
+
+
+    <script src="scripts/LoginScripts/session.js"></script>
+    <script src="scripts/LoginScripts/signin-controller.js"></script>
+    <script src="scripts/CustomerListPages/CustomerList.js"></script>
+    <script src="scripts/CustomerListPages/CustomerOrderListPage.js"></script>
+    <script src="scripts/LoginScripts/MainSignInPage.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+﻿
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+
+#MainPage .ui-listview {
+    background-color: #d7d7d7;
+}
+
+    #MainPage .ui-listview > li.ui-first-child, #MainPage .ui-listview > li.ui-first-child > a.ui-btn {
+        font-family: 'Abril Fatface', cursive;
+        font-size: 22px;
+        color: #fff;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    #MainPage .ui-listview > li {
+        margin-top: 10px;
+    }
+
+        #MainPage .ui-listview > li a {
+            height: 50px;
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+            border: .5px solid #aaa0a0;
+            border-radius: 15px 0 15px 0;
+            font-family: 'Shrikhand', cursive;
+        }
+
+        #MainPage .ui-listview > li span {
+            font-size: 32px;
+            margin-top: -20px
+        }
+
+#MainPage #homePagefooterHeader {
+    margin-top: -10px;
+}
+
+.btn-floating-container {
+    right: 50px;
+    bottom: 50px;
+    position: fixed;
+}
+
+.btn-floating {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(245, 245, 245, 0.075);
+    text-align: center;
+    padding: 0px;
+}
+
+.btn-large i {
+    font-size: 14px;
+}

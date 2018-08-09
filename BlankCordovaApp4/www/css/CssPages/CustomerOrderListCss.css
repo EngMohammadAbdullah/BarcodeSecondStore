@@ -1,0 +1,46 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+
+
+
+
+#CustomerOrderList input[data-type~="search"] {
+    padding-right: 20px;
+    text-align: right;
+    border-width: 0;
+    font-size: 22px
+}
+
+#CustomerOrderList .ui-input-search {
+    color: #000;
+    border: unset;
+    padding-right: 40px
+}
+
+#CustomerOrderList .ui-filterable {
+    border-width: 0px;
+}
+
+
+
+#CustomerOrderList #CustomersList > li a {
+    -moz-border-radius: inherit;
+    -webkit-border-radius: inherit;
+    border-radius: 15px 0 15px 0;
+    font-family: 'Libre Baskerville', serif;
+    border-bottom: .5px solid #0255d8;
+    background-color: rgb(102,45,145);
+    color: #fff;
+}
+
+/*#CustomerList #selectedCustomer {
+    border-radius: 15px 0 15px 0;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px;
+    border-bottom: .5px solid #0255d8;
+    background-color: rgb(102,45,145);
+    color: #fff;
+    padding :10px;
+  padding-left:20px;
+  
+  
+}*/

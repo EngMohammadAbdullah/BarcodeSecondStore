@@ -130,7 +130,6 @@ h1 {
 .panel-body input[type=checkbox]:checked + label {
     text-decoration: line-through;
     color: rgb(128, 144, 160);
-    
 }
 
 .list-group-item:hover, a.list-group-item:focus {
@@ -435,7 +434,7 @@ h1 {
 
 
 .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
-  font-family:'Times New Roman'
+    font-family: 'Times New Roman'
 }
 
 .ui-slider-track .ui-btn.ui-slider-handle {
@@ -511,9 +510,8 @@ html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit {
 
 
 
-.foundedProductype{
-
-    border:solid 2px rgb(248, 148, 6);
-    display:inline;
-    color:red;
+.foundedProductype {
+    border: solid 2px rgb(248, 148, 6);
+    display: inline;
+    color: red;
 }

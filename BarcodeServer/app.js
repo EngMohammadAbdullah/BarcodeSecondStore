@@ -1,3 +1,4 @@
+
 //Import the mongoose module
 var mongoose = require('mongoose');
 var app = require('express')();
@@ -8,6 +9,13 @@ var container = require("./Mongo/Container.js");
 var scannedContainer = require("./Mongo/mongo_models/ScannedProduct.js");
 var BagGenerator = require("./Mongo/mongo_models/BagsGenerator.js");
 var scannedBag = require("./Mongo/mongo_models/ScannedBags.js");
+var productDegrees = require("./Mongo/mongo_models/ProductDegree.js");
+var UserAuth = require("./Mongo/mongo_models/UserAuth.js");
+var userAuth = new UserAuth();
+var Customers = require("./Mongo/mongo_models/Customers.js");
+var newCustomer = new Customers();
+
+//Customers Module 
 
 var port = 3000;
 
@@ -39,6 +47,16 @@ mongoose.Promise = global.Promise;
 
 //Set up default mongoose connection
 var mongoDB = 'mongodb://eng_mohammad:mohammad224@ds123312.mlab.com:23312/barcode_clothes';
+//????? ?????? ?????, ????? ?????? ?? ?????
+//mongoDB = 'mongodb://localhost:27017/barcode_clothes';
+//mongoose.connect('mongodb://127.0.0.2/test').exec()
+//    .then(() => { // if all is ok we will be here
+//        return server.start();
+//    })
+//    .catch(err => { // if error we will be here
+//        console.error('App starting error:', err.stack);
+//        process.exit(1);
+//    });
 
 mongoose.connect(mongoDB);
 
@@ -87,19 +105,20 @@ io.on('connection', function (socket) {
             container.getContainerNumber(containerSChema).then((cNo) => {
 
                 if (cNo) {
-
-                    loggerInfo.info('Getting Container Number ', cNo, { number: cNo });
+                    console.log("cNo" + cNo);
+                    //loggerInfo.info('Getting Container Number ', cNo, { number: cNo });
                     // CheckExistingSchema("ScannedProduct").then((sContaier) => {
                     scannedContainer.createScannedProductsSchema().then((sContaier) => {
                         scannedContainer.GetLastScannedContainer(sContaier, cNo)
                             .then((lastContainer) => {
                                 if (lastContainer) {
 
-                                    socket.emit("OpenedScannedDocument", lastContainer)
+                                    socket.emit("OpenedScannedDocument",
+                                        lastContainer)
 
                                 }
                                 else {
-                                    socket.emit("OpenedScannedDocument", null)
+                                    socket.emit("OpenedScannedDocument", null);
 
                                     loggerInfo.error("There is no Opened Container!!");
 
@@ -131,10 +150,10 @@ io.on('connection', function (socket) {
 
     //Create New Document 
     socket.on("CloseingContainer", function (containerNumber) {
-        scannedProduct.createScannedProductsSchema().then((container) => {
-            scannedProduct.CloseContainer(container, containerNumber)
+        scannedContainer.createScannedProductsSchema().then((container) => {
+            scannedContainer.CloseContainer(container, containerNumber)
                 .then((isClosed) => {
-                    socket.emit("ClosedContainer", true);
+                    socket.emit("ClosedContainer", isClosed);
                 });
 
         });
@@ -250,12 +269,12 @@ io.on('connection', function (socket) {
     //(ccr-5466-465465):(type-ContainerNumber-GeneratedNumber)
 
     socket.on("GenerateProductNumberFromServer", (productType) => {
-
+        console.log(Date())
         container.createContainer().then((containerSChema) => {
             container.getContainerNumber(containerSChema).then((cNo) => {
 
                 if (cNo) {
-                    loggerInfo.info('Getting Container Number ', cNo, { number: cNo });
+                    //loggerInfo.info('Getting Container Number ', cNo, { number: cNo });
                     // CheckExistingSchema("ScannedProduct").then((sContaier) => {
                     scannedContainer.createScannedProductsSchema().then((sContaier) => {
                         scannedContainer.GetLastScannedContainer(sContaier, cNo)
@@ -268,6 +287,8 @@ io.on('connection', function (socket) {
                                             var generatedNumber = productType.trim() +
                                                 "-" + lastContainer.container_number + "-" + no;
                                             console.log(generatedNumber);
+                                            console.log(Date())
+
                                             socket.emit("GeneratingProductNumberFromServer",
                                                 generatedNumber);
                                         });
@@ -300,21 +321,22 @@ io.on('connection', function (socket) {
         scannedContainer.createScannedProductsSchema().then((sContaier) => {
             scannedContainer.AddScannedProductTo(sContaier, ContainerNumber, scannedProducts)
                 .then((lastContainer) => {
+
                     if (lastContainer) {
 
-                        console.log("You have scanned " + lastContainer + "new");
+                        console.log("You have scanned " +
+                            lastContainer + " New");
 
-                        socket.emit("ScanedProductsStored", lastContainer)
 
                     }
                     else {
-                        console.log("Number Exist")
-
+                        console.log(lastContainer + "  Exists!!");
                         // socket.emit("OpenedScannedDocument", null)
-
-
-
                     }
+
+                    socket.emit("ScanedProductsStored", lastContainer)
+
+
                 })
         });
 
@@ -327,12 +349,68 @@ io.on('connection', function (socket) {
             scannedBag.StoreScannedBag(schema, scannedBags).then((savedItems) => {
                 socket.emit("StoredScannedBag", savedItems);
             })
+        })
+    });
 
+    /*
+     
+     Add Product degree to the products 
+     Karatcht , ???? 2  , 
+
+     */
+
+    socket.on("AddingProductDegree", (newDegreesArray) => {
+        productDegrees.CreatDegreeSchema().then(schema => {
+
+            productDegrees.CreateAddNewDegrees(schema, newDegreesArray).then(saved => {
+                socket.emit("GettingProductDegree", saved);
+            })
+        })
+    })
+
+    socket.on("GetAllProductDegrees", () => {
+        productDegrees.CreatDegreeSchema().then(schema => {
+
+            productDegrees.GetAllDegrees(schema).then(allDegrees => {
+
+                socket.emit("GettingAllProductDegrees", allDegrees);
+
+            })
+        })
+    })
+
+
+    socket.on("UserAuthentication", (userData) => {
+
+
+        userAuth.AllowToAccess(userData).then((IsValidUser) => {
+
+            console.log(userData)
+
+            socket.emit("IsValidUser", IsValidUser);
 
         })
 
+    })
+
+    //Customers Opeations
+    socket.on("CreatingCustomer", (customerData) => {
+
+        newCustomer.CreateCustomers(customerData).then((status) => {
+            console.log(status)
+            socket.emit("CreatedCustomer", status)
+
+        })
 
     })
+
+    socket.on("findingCustomer", (searchData) => {
+        newCustomer.FindCustomer(searchData).then((foundedCustomer) => {
+            socket.emit("FoundedCustomer", foundedCustomer)
+        })
+
+    })
+    //End of Customer Operations
 });
 
 //Here Functions To generate GUID 

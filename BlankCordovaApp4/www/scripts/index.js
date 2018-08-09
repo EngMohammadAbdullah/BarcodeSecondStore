@@ -14,13 +14,15 @@ try {
 
             try {
 
-                socket.on('connect', function () {
-                    if (socket.connected) {
-                        alert("connected");
-                    } else
-                        alert("Not connected");
+                //socket.on('connect', function () {
+                //    if (socket.connected) {
+                //        alert("connected");
+                //    } else
+                //        alert("Not connected");
 
-                });
+                //});
+
+
                 AddScriptTagToHead("scripts/Pages/GlobalVariables.js")
                 AddScriptTagToHead("scripts/Pages/ProductTypesManagePageScript.js")
                 AddScriptTagToHead("scripts/Pages/BagsPage.js")
@@ -28,11 +30,16 @@ try {
                 AddScriptTagToHead("scripts/Pages/TypeSearchImagesEvents.js")
                 AddScriptTagToHead("scripts/Pages/QrcodeProductsScanPage.js")
                 AddScriptTagToHead("scripts/Pages/QrcodeBagsScanPage.js")
-                //هذا الحدث للذهاب لصفحة المنتجات 
+                AddScriptTagToHead("scripts/Pages/OpenCloseContainerPage.js")
+                AddScriptTagToHead("scripts/Pages/ProductDegreeManagePage.js")
+                AddScriptTagToHead("scripts/Pages/verkochtBagsPage.js")
+                AddScriptTagToHead("scripts/Pages/MainPage.js")
+                AddScriptTagToHead("scripts/Pages/PrintContainerReport.js")
 
 
-               
-
+                //هذا التابع لاستيراد الأنواع من قاعدة البيانات 
+                //CCR-CCH-MCP-.... 
+                //و عرضعا في List view
                 GetAllProductTypes();
 
                 $("#GoToProductTypesPage").click(() => {
@@ -40,91 +47,21 @@ try {
                     $.mobile.navigate("#ProductTypesManagePage");
                 })
 
-                //  هذا التابع يطبع تقرير عن البالات التي تم تخزينها 
-                PrintScannedProductReport()
                 //الكود التالي لاستيراد أرقام الكونتيرات التي تم العمل عليها 
 
                 //  GetAllScannedContainerNumbers();
-                $("#GoToOpenCloseContainerPage").click(() => {
-                    $.mobile.navigate("#OpenCloseContainerPage");
-                })
+
 
                 $("#GoToAllScannedContainerNumberProductsPage").click(() => {
                     $.mobile.navigate("#AllScannedContainerNumberProductsPage");
                 });
-
-                $(document).on('pageshow', '#OpenCloseContainerPage', function () {
-
-
-                    // Show full page LoadingOverlay
-                    $.LoadingOverlay("show");
-
-                    GetAllScannedContainerNumbers();
-                });
-
-
-
-                var openBtn = $("#openContainerScanDocument");
-                var closeBtn = $("#closeContainerScanDocument");
 
                 /* 
                  Open/CloseContainerPage الكود التالي لصفحة الــ 
                  
                  */
 
-                openBtn.click(function () {
 
-
-                    socket.emit("OpenScannedDocument");
-                    //after Getting Object
-                    socket.on("OpenedScannedDocument", (openedScannedDocument) => {
-
-                        if (openedScannedDocument) {
-
-                            swal({
-                                title: 'Create Container',
-                                text: 'Start to creating container',
-                                timer: 4000,
-                                onOpen: () => {
-                                    swal.showLoading()
-                                    $("#containerNoHeader").
-                                        text(openedScannedDocument.container_number);
-                                }
-                            })
-                        }
-
-                    });
-
-                });
-
-                closeBtn.click(() => {
-                    //swal("Open document !!")
-                    openBtn.enabled = false;
-
-                });
-
-                //Socket connection
-                if (socket.connected) {
-                    openBtn.removeClass('ui-disabled');
-                }
-                else {
-                    openBtn.addClass('ui-disabled');
-                }
-
-                socket.on('connect', function () {
-                    if (socket.connected) {
-                        openBtn.removeClass('ui-disabled');
-                    }
-
-                });
-
-                socket.on('disconnect', function () {
-                    if (!socket.connected) {
-                        openBtn.addClass('ui-disabled');
-                    }
-
-
-                });
                 //end Socket
 
                 /* 
@@ -314,58 +251,7 @@ try {
         // End of Scanned Methods
 
 
-        //  هذا التابع يطبع تقرير عن البالات التي تم تخزينها 
 
-        function PrintScannedProductReport() {
-
-            $("#testPrintReport").click(() => {
-
-                socket.emit("GellAllScannedProducts", "4546461");
-
-                socket.on("GettingAllScannedContainerNumbers", (products) => {
-
-                    var tablestr = "";
-
-                    CountOf(products).then((objects) => {
-
-
-                        for (var key in objects) {
-                            var value = objects[key];
-                            var element = "<tr><td>" + key +
-                                "</td><td>" + value + "</td></tr>";
-
-                            tablestr += element;
-                        }
-
-
-
-                        //for (var i = 0; i < CountOf(products).length; i++) {
-
-                        //    var element = "<tr><td>" + products[i].productNumber +
-                        //        "</td><td>" + products[i].productType + "</td></tr>";
-
-                        //    tablestr += element;
-                        //}
-
-
-                        var str = '<!DOCTYPE html><html><head> <style> body { background: rgb(204,204,204); } page { background: white; display: block; margin: 0 auto; margin-bottom: 0.5cm; box-shadow: 0 0 0.5cm rgba(0,0,0,0.5); } page[size="A4"] { width: 21cm; height: 29.7cm; } page[size="A4"][layout="portrait"] { width: 29.7cm; height: 21cm; } page[size="A3"] { width: 29.7cm; height: 42cm; } page[size="A3"][layout="portrait"] { width: 42cm; height: 29.7cm; } page[size="A5"] { width: 14.8cm; height: 21cm; } page[size="A5"][layout="portrait"] { width: 21cm; height: 14.8cm; } @media print { body, page { margin: 0; box-shadow: 0; } } #customers { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; } #customers td, #customers th { border: 1px solid #ddd; padding: 8px; } #customers tr:nth-child(even) { background-color: #f2f2f2; } #customers tr:hover { background-color: #ddd; } #customers th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white; } #customers th:first-of-type { width: 20% } </style></head><body> <page size="A4"> <table id="customers"> <tr> <th>Company</th> <th>Contact</th> </tr> '
-                            + tablestr + '</table> </page></body></html>';
-
-
-
-                        cordova.plugins.printer.print(str, {
-                            printerId: "MG3600 series(192.168.0.206)",
-
-                        });
-
-                    });
-
-
-                });
-
-
-            })
-        }
 
         //الحصول على أنواع المنتجات CCR,MCP,Lpt
         function GetAllProductTypes() {
@@ -387,7 +273,7 @@ try {
                             + '</a> </li>')
                     }
 
-                    $('[data-role=listview]').listview().listview('refresh');
+                    $('[data-role=listview]').fieldset().fieldset('refresh');
                 }
                 else
                     swal("لايوجد أنواع لعرضها")
@@ -395,26 +281,7 @@ try {
             })
         }
 
-        function CountOf(products) {
 
-            return new Promise((resolve, reject) => {
-                //const vals = Object.keys(products).map(key => products[key]);
-                //alert(vals.length);
-                var elements = {};
-                for (var i = 0; i < products.length; i++) {
-                    if (elements[products[i].productType] == undefined) {
-                        elements[products[i].productType] = 1;
-                    }
-                    else
-                        elements[products[i].productType] += 1;
-                }
-
-                return resolve(elements);
-            })
-
-
-
-        }
 
         //هذا استخدم لتسجيل الدخول 
         function ScanToLogin() {
@@ -600,76 +467,9 @@ try {
             return n === 0 || !!(n && !(n % 2));
         }
 
-        //هذا الكود لاستيراد الكود من قاعدة البيانات و عرضه في ال Listview
-        function GetAllScannedContainerNumbers() {
 
 
 
-            socket.on("GettingAllScannedContainerNumbers",
-                (_allScannedContainers) => {
-                    var listview = $("#listViewContainerNumbers");
-
-                    if (_allScannedContainers) {
-
-                        listview.empty();
-                        for (var i = 0; i < _allScannedContainers.length; i++) {
-
-                            var theme = isEven(i) ? '"a"' : '"b"';
-                            var liElement =
-                                $('<li data-theme=' + theme + '> </li>');
-
-                            liElement.append('<a href="#"> <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">'
-                                + _allScannedContainers[i] + '</a>');
-
-                            liElement.click((e) => {
-
-                                var txt = $(e.target).text();
-
-                                GellAllScannedProduct(txt);
-                                $.mobile.navigate("#AllScannedContainerNumberProductsPage");
-
-
-                            });
-
-                            listview.append(liElement);
-                        }
-
-                    }
-                    else
-                        listview.empty();
-                    $('[data-role=listview]').listview().listview('refresh');
-
-                })
-            $.LoadingOverlay("hide");
-        }
-
-        function GellAllScannedProduct(containerNumber) {
-
-            socket.emit("GellAllScannedProducts", containerNumber);
-            var listview = $("#listViewScannedProducts");
-            socket.on("GettingAllScannedContainerNumbers", (_allScannedProducts) => {
-
-                if (_allScannedProducts) {
-
-                    listview.empty();
-
-                    for (var i = 0; i < _allScannedProducts.length; i++) {
-
-                        var theme = isEven(i) ? '"a"' : '"b"';
-                        listview.append(' <li data-theme=' + theme +
-                            ' > <a href="#"> <img src="http://jqmdesigner.appspot.com/images/image.png" class="ui-li-icon">'
-                            + _allScannedProducts[i].productType + '       '
-                            + _allScannedProducts[i].productNumber + '</a> </li>')
-                    }
-
-                    $('[data-role=listview]').listview().listview('refresh');
-                }
-                else
-                    listview.empty();
-
-
-            })
-        }
     })();
 
 } catch (e) {

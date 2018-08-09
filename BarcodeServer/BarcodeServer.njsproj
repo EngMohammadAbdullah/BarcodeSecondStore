@@ -35,13 +35,25 @@
     <Compile Include="Mongo\Container.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mongo\mongo_models\BagCustomerOrder.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mongo\mongo_models\BagsGenerator.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mongo\mongo_models\BagsScanned.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mongo\mongo_models\Customers.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mongo\mongo_models\ProductDegree.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mongo\mongo_models\ScannedBags.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mongo\mongo_models\UserAuth.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mongo\ProductTypes.js">

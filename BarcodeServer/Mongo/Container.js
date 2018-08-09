@@ -7,14 +7,12 @@ var Container = {
     createContainer: function () {
         return new Promise((resolve, reject) => {
             var Schema = mongoose.Schema;
-
             // create a schema
             var containerSchema = new Schema({
                 container_number: []
             });
 
             if (mongoose.connection.modelNames()) {
-
 
                 var schema = mongoose.connection.modelNames().
                     find(schema => schema == "Container");
@@ -98,7 +96,7 @@ var Container = {
 
                 if (containerDoc[0].container_number.length) {
 
-                    
+
                     containerDoc[0].container_number =
                         containerDoc[0].container_number.slice(1);
 

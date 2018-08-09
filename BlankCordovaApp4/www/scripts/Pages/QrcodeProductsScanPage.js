@@ -2,19 +2,24 @@
 $("#QrcodeScannerBtn").click(function () {
     scannedItems = [];
     scan();
-
 });
 
 $("#ShowSCannedItemsBtn").click(function () {
 
-    var containerNumber = ExtractContainerNumber(scannedItems[ContainerIndexInfo]);
+    var containerNumber =    ExtractContainerNumber(scannedItems[ContainerIndexInfo]);
+
     socket.emit("StoreScannedProduct",
         InitializeScannedProducts(scannedItems), containerNumber);
 
 
     socket.on("ScanedProductsStored", (newStoredProducts) => {
+        if (!newStoredProducts) {
+            swal("لا يوجد جديد لتخزينه !!")
 
-        swal("You have scanned   " + newStoredProducts + "  new  ")
+        }
+        else
+
+            swal(" تم تخزين " + newStoredProducts + " عنصر جديد ")
 
     })
 });

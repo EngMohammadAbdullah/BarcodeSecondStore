@@ -4,7 +4,7 @@
 function GetBagNumberFromServer(BagType) {
 
     return new Promise((resolve, reject) => {
-        
+
         socket.emit("GenerateBagNumberFromServer", BagType);
 
         socket.on("GeneratingBagNumberFromServer", (bagNumber) => {
@@ -13,10 +13,7 @@ function GetBagNumberFromServer(BagType) {
                 return resolve(bagNumber)
             } else
                 return reject(null)
-
         })
-
-
     })
 }
 
@@ -24,6 +21,7 @@ function GetBagNumberFromServer(BagType) {
 //هذه الصفحة لتوليد أزرار حسب الأنواع الموجودة للطباعة
 function AddDynamicControls(divaName) {
 
+    GetAllDegrees();
     var element =
         $('<div class="ui-grid-b" style="height:90px"> </div>');
 
@@ -39,13 +37,18 @@ function AddDynamicControls(divaName) {
                             e = element.clone();
                             //  var ea = elementa.clone();
                             var aa = $(' <div id="' +
-                                typeName + '" class="ui-block-a" style="height:100%"> <img is="dragable" src="images/open_box-64.png" style="width:60px; margin:5px 15px 5px 18px"> <h5  style="text-align:center; margin-top:-5px;">' + typeName + '</h5> </div>')
+                                typeName +
+                                '" class="ui-block-a" style="height:100%"> <img is="dragable" src="images/open_box-64.png" style="width:60px; margin:5px 15px 5px 18px"> <h5  style="text-align:center; margin-top:-5px;">' + typeName + '</h5> </div>')
                                 .clone();
                             aa.click(function () {
                                 /* Act on the event */
-
+                                var selectedDegree = checkSelectedDegree();
+                                if (!selectedDegree) {
+                                    swal("يحب اختيار نوع")
+                                    return;
+                                }
                                 socket.emit("GenerateProductNumberFromServer",
-                                    $(this).attr("id"));
+                                    $(this).attr("id") + "_" + selectedDegree);
 
                                 GetStringForPrinting($(this).attr("id"))
                                     .then(function (str) {
@@ -137,11 +140,18 @@ function AddDynamicControls(divaName) {
         else
             alert("حدص خطأ في استعادة البيانات");
 
-    })
+
+
+    });
+
 
 
 }//enf of the AddDynamicControls
 
+//Check If User have selected a degree 
+function checkSelectedDegree() {
+    return $("#ProductTypesPage #selectedDegreeHeader").text();
+}
 
 //استعادة رقم من السيرفر  للطباعة
 function GetStringForPrinting(qrCodeString) {
@@ -150,7 +160,7 @@ function GetStringForPrinting(qrCodeString) {
         try {
             socket.on("GeneratingProductNumberFromServer",
                 function (productNumber) {
-                    swal(productNumber);
+                    // swal(productNumber);
                     qrcode.makeCode(productNumber);
 
                     $("#qrcode img").load(function () {
@@ -188,7 +198,6 @@ function GetAllTypeNamesFromServer() {
 }
 
 // 
-
 //Init QrCode
 function InitQrCodeObject() {
 
@@ -227,57 +236,176 @@ function InitQrCodeObject() {
 
 }
 
+//Get AllDegrees From Server ex:Karatchi , Konakri,..
+function GetAllDegrees() {
+    socket.emit("GetAllProductDegrees");
+    socket.on("GettingAllProductDegrees", (alldegrees) => {
+
+        if (alldegrees.length) {
+
+            $("#ProductDegreesMain").empty();
+            var element =
+                $('<div class="ui-grid-b" style="height:90px"> </div>');
+
+            for (var i = 0; i < alldegrees.length; i++) {
+                var e;
+                var typeName =
+                    alldegrees[i].shortcut.trim().toUpperCase();
+
+                switch ((i + 1) % 3) {
+
+                    case 1:
+                        {
+                            e = element.clone();
+                            //  var ea = elementa.clone();
+                            var aa = $(' <div id="' +
+                                typeName +
+                                '" class="ui-block-a" style="height:100%"> <h1  style="text-align:center;font-size:42px; margin-top:5px; ;text-align:center">' + typeName + '</h1> </div>')
+                                .clone();
+
+                            aa.click(function () {
+
+                                $("#selectedDegreeHeader")
+                                    .text($(this).attr("id"));
+                                $("#ProductTypesPage div[class^='ui-block']")
+                                    .css("color", "unset");
+                                $(this).css({
+
+                                    color: "red"
+                                })
+
+                            });
+
+                            e.append(aa);
+                        }
+                        break;
+                    case 2:
+                        {
 
 
-AddDynamicControls("ProductTypesMain");
+                            // var eb = elementb.clone();
+                            var aa = $(' <div id="' +
+                                typeName +
+                                '" class="ui-block-b" style="height:100%"> <h1  style="text-align:center;font-size:42px; margin-top:5px; ;text-align:center">' + typeName + '</h1> </div>')
+                                .clone();
 
-(function () {
+                            aa.click(function () {
+                                $("#selectedDegreeHeader")
+                                    .text($(this).attr("id"));
+                                $("#ProductTypesPage div[class^='ui-block']")
+                                    .css("color", "unset");
+                                $(this).css({
+
+                                    color: "red"
+                                })
+                            });
+                            //  eb.append(aa)
 
 
-    $(document).delegate(".ui-content", "scrollstart", false);
+                            e.append(aa);
+                        }
+                        break;
+                    case 0:
+                        {
+                            // var ec = elementc.clone();
+                            var aa = $(' <div id="' +
+                                typeName +
+                                '" class="ui-block-c" style="height:100%"> <h1  style="text-align:center;font-size:42px; margin-top:5px; ;text-align:center">' + typeName + '</h1> </div>')
+                                .clone();
 
-    $("#ProductTypesSearch").on('input', function (e) {
-        if ($(this).val().trim()) {
-            $(".ui-grid-b").css("display", "none");
-            var parent = $("#" + $(this).val().toUpperCase()).parent();
-            parent.css("display", "initial");
+                            aa.click(function () {
+                                $("#selectedDegreeHeader")
+                                    .text($(this).attr("id"));
+                                $("#ProductTypesPage div[class^='ui-block']")
+                                    .css("color", "unset");
+                                $(this).css({
 
-            $("#" + $(this).val().toUpperCase())
-                .css("display", "initial");
-            $('html, body').animate({
-                scrollTop: $("#" + $(this).val().toUpperCase()).offset().top + 100
-            }, 700);
+                                    color: "red"
+                                })
+                            });
+                            // ec.append(aa)
+                            e.append(aa);
 
-            // SearchType("BagsPageMain", $(this).val().trim().toUpperCase());
+                        }
+                        break;
+                }//End Of Switch
+
+
+                $("#ProductDegreesMain").append($("<br/>"));
+                $("#ProductDegreesMain").append(e);
+
+            }
+
+
+
         }
-        else {
-
-            $(".ui-grid-b").css("display", "initial");
-            //  AddDynamicControls("BagsPageMain");
-
-        }
-
-    });
-
-
-
-    $(".ui-input-clear").on('click', function () {
-        $(".ui-grid-b").css("display", "initial");
-        $(".ui-grid-b div").css("display", "initial");
-
-    });
-    $(".ui-grid-b .ui-block-a").on("click", function () {
-        alert($(this).attr("id"));
     })
 
 
+};
+
+//Assign changed Event 
+(function () {
+    $("#ProductTypesPage input[type='radio']").bind("change", function (event, ui) {
+        //  alert($(this).val());
+        $("#selectedDegreeHeader").text($(this).val());
+        $("#popupMenu").popup("close");
+    });
 })()
 
-InitQrCodeObject().then(function (qrObj) {
-    qrcode = qrObj;
-    qrcode.makeCode("http://www.facebook.com");
-});
+$(document).on('pageshow', '#ProductTypesPage', function () {
+    AddDynamicControls("ProductTypesMain");
 
+    (function () {
+
+
+        $(document).delegate(".ui-content", "scrollstart", false);
+
+        $("#ProductTypesSearch").on('input', function (e) {
+            if ($(this).val().trim()) {
+                $(".ui-grid-b").css("display", "none");
+                var parent = $("#" + $(this).val().toUpperCase()).parent();
+                parent.css("display", "initial");
+
+                $("#" + $(this).val().toUpperCase())
+                    .css("display", "initial");
+                $('html, body').animate({
+                    scrollTop: $("#" + $(this).val().toUpperCase()).offset().top + 100
+                }, 700);
+
+                // SearchType("BagsPageMain", $(this).val().trim().toUpperCase());
+            }
+            else {
+
+                $(".ui-grid-b").css("display", "initial");
+                //  AddDynamicControls("BagsPageMain");
+
+            }
+
+        });
+
+
+
+        $(".ui-input-clear").on('click', function () {
+            $(".ui-grid-b").css("display", "initial");
+            $(".ui-grid-b div").css("display", "initial");
+
+        });
+        $(".ui-grid-b .ui-block-a").on("click", function () {
+            alert($(this).attr("id"));
+        })
+
+
+    })()
+
+    InitQrCodeObject().then(function (qrObj) {
+        qrcode = qrObj;
+        qrcode.makeCode("http://www.facebook.com");
+    });
+
+
+
+});
 
 $("#goToQrcodePage").click(function () {
     GetBagNumberFromServer("ccr").then((no) => {
@@ -287,4 +415,3 @@ $("#goToQrcodePage").click(function () {
     })
     $.mobile.navigate("#BagsPage");
 })
-
